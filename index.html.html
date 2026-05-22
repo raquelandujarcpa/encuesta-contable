@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Levantamiento Inicial — Lcda. Raquel Ma. Andújar, CPA</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --azul: #1a3d6e;
+    --azul-medio: #2563a8;
+    --azul-claro: #e8f0fa;
+    --dorado: #b8913a;
+    --gris: #6b7280;
+    --gris-claro: #f4f6f9;
+    --borde: #dde3ec;
+    --texto: #1e2535;
+    --blanco: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f0f3f8;
+    color: var(--texto);
+    min-height: 100vh;
+  }
+  .page-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--azul);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(184,145,58,0.12);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 30%;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .header-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 1.5rem; }
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--dorado);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 600; color: white;
+    flex-shrink: 0;
+  }
+  .header-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 600;
+    color: white; margin-bottom: 4px;
+  }
+  .header-text .cred {
+    font-size: 13px; color: var(--dorado); font-weight: 500; letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .header-text p {
+    font-size: 13px; color: rgba(255,255,255,0.65);
+  }
+
+  /* PROGRESO */
+  .progress-wrap { margin-bottom: 1.5rem; }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--gris); margin-bottom: 6px;
+  }
+  .progress-bar {
+    height: 5px; background: var(--borde); border-radius: 3px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--azul-medio), var(--dorado));
+    border-radius: 3px; transition: width 0.4s ease;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex; gap: 4px; flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    padding: 6px;
+    border: 1px solid var(--borde);
+  }
+  .tab-btn {
+    flex: 1; min-width: 80px;
+    padding: 7px 8px;
+    font-size: 12px; font-weight: 500;
+    border: none; background: none; cursor: pointer;
+    color: var(--gris);
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .tab-btn.active {
+    background: var(--azul); color: white;
+  }
+  .tab-btn:hover:not(.active) { background: var(--gris-claro); color: var(--texto); }
+
+  /* SECCIONES */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARD */
+  .card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--borde);
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 500;
+    color: var(--azul); margin-bottom: 1.25rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--azul-claro);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sec-title svg { flex-shrink: 0; }
+
+  /* PREGUNTAS */
+  .q { margin-bottom: 1.1rem; }
+  .q:last-child { margin-bottom: 0; }
+  .ql {
+    font-size: 13.5px; font-weight: 500;
+    color: var(--texto); margin-bottom: 7px; line-height: 1.4;
+  }
+  .ql .req { color: #dc2626; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:520px){ .two { grid-template-columns: 1fr; } }
+
+  input[type=text], input[type=email], input[type=tel], select, textarea {
+    width: 100%; font-size: 14px; font-family: 'DM Sans', sans-serif;
+    padding: 9px 12px;
+    border: 1.5px solid var(--borde);
+    border-radius: 9px;
+    background: var(--gris-claro);
+    color: var(--texto);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--azul-medio);
+    background: white;
+  }
+  textarea { resize: vertical; min-height: 70px; }
+
+  .rg, .cg { display: flex; flex-direction: column; gap: 6px; }
+  .rg.row, .cg.row { flex-direction: row; flex-wrap: wrap; }
+  .rg label, .cg label {
+    display: flex; align-items: center; gap: 9px;
+    font-size: 13.5px; color: var(--texto); cursor: pointer;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1.5px solid var(--borde);
+    background: var(--gris-claro);
+    transition: all 0.15s;
+  }
+  .rg label:hover, .cg label:hover {
+    border-color: var(--azul-medio); background: var(--azul-claro);
+  }
+  .rg input[type=radio]:checked + span,
+  .cg input[type=checkbox]:checked + span { color: var(--azul); }
+  input[type=radio], input[type=checkbox] {
+    width: 16px; height: 16px; flex-shrink: 0;
+    accent-color: var(--azul-medio);
+  }
+
+  /* NAV */
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 1.5rem; gap: 10px;
+  }
+  .btn {
+    padding: 10px 24px; font-size: 14px; font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 9px; cursor: pointer;
+    border: 1.5px solid var(--borde);
+    background: white; color: var(--texto);
+    display: flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .btn:hover { background: var(--gris-claro); }
+  .btn.primary {
+    background: var(--azul); color: white; border-color: var(--azul);
+  }
+  .btn.primary:hover { background: var(--azul-medio); border-color: var(--azul-medio); }
+  .btn.success {
+    background: #059669; color: white; border-color: #059669;
+    width: 100%; justify-content: center; padding: 12px;
+    font-size: 15px; margin-top: 1rem;
+  }
+  .btn.success:hover { background: #047857; }
+  .btn[style*="display:none"] { display: none !important; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center; margin-top: 2.5rem;
+    font-size: 12px; color: var(--gris);
+  }
+  .footer span { color: var(--dorado); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="avatar">RA</div>
+      <div class="header-text">
+        <div class="cred">Contadora Pública Autorizada</div>
+        <h1>Lcda. Raquel Ma. Andújar, CPA</h1>
+        <p>Levantamiento inicial — Servicios contables · República Dominicana</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="step-info">Sección 1 de 6</span>
+      <span id="step-pct">17%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:17%"></div></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="goTo(0)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M8 8h8M8 16h4"/></svg>
+      Empresa
+    </button>
+    <button class="tab-btn" onclick="goTo(1)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      DGII
+    </button>
+    <button class="tab-btn" onclick="goTo(2)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Nómina
+    </button>
+    <button class="tab-btn" onclick="goTo(3)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      Contabilidad
+    </button>
+    <button class="tab-btn" onclick="goTo(4)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Servicios
+    </button>
+    <button class="tab-btn" onclick="goTo(5)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Preferencias
+    </button>
+  </div>
+
+  <!-- SECCIÓN 1 -->
+  <div id="s0" class="section active">
+    <div class="card">
+      <div class="sec-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+        1. Datos generales de la empresa
+      </div>
+      <div class="two">
+        <div class="q"><div class="ql">Razón social <span class="req">*</span></div><input type="text" id="f_razon" placeholder="Ej. Distribuidora García, S.R.L."></div>
+        <div class="q"><div class="ql">RNC / Cédula <span class="req">*</span></div><input type="text" id="f_rnc" placeholder="1-30-12345-6"></div>
+      </div>
+      <div class="two">
+        <div class="q"><div class="ql">Contacto principal <span class="req">*</span></div><input type="text" id="f_contacto" placeholder="Nombre completo"></div>
+        <div class="q"><div class="ql">Cargo</div><input type="text" id="f_cargo" placeholder="Ej. Gerente, Dueño"></div>
+      </div>
+      <div class="two">
+        <div class="q"><div class="ql">Correo electrónico <span class="req">*</span></div><input type="email" id="f_email" placeholder="correo@empresa.com"></div>
+        <div class="q"><div class="ql">Teléfono / WhatsApp</div><input type="tel" id="f_tel" placeholder="(809) ___-____"></div>
+      </div>
+      <div class="two">
+        <div class="q"><div class="ql">Tipo de entidad <span class="req">*</span></div>
+          <select id="f_entidad">
+            <option value="">— Selecciona —</option>
+            <option>S.R.L.</option><option>S.A.</option><option>S.A.S.</option>
+            <option>Persona Física con Negocio</option><option>EIRL</option>
+            <option>Asociación sin fines de lucro</option><option>Otro</option>
+          </select>
+        </div>
+        <div class="q"><div class="ql">Sector / Giro <span class="req">*</span></div>
+          <select id="f_sector">
+            <option value="">— Selecciona —</option>
+            <option>Comercio</option><option>Servicios profesionales</option>
+            <option>Manufactura</option><option>Construcción / Inmobiliaria</option>
+            <option>Turismo / Hotelería</option><option>Restaurante / Alimentos</option>
+            <option>Salud / Bienestar</option><option>Tecnología / Software</option>
+            <option>Transporte / Logística</option><option>Importación / Exportación</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2 -->
+  <div id="s1" class="section">
+    <div class="card">
+      <div class="sec-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        2. Situación tributaria (DGII)
+      </div>
+      <div class="q"><div class="ql">¿Está registrado ante la DGII? <span class="req">*</span></div>
+        <div class="rg row">
+          <label><input type="radio" name="dgii_reg"><span>Sí, RNC activo</span></label>
+          <label><input type="radio" name="dgii_reg"><span>En proceso</span></label>
+          <label><input type="radio" name="dgii_reg"><span>No aún</span></label>
+        </div>
+      </div>
+      <div class="q"><div class="ql">¿Está al corriente con la DGII? <span class="req">*</span></div>
+        <div class="rg row">
+          <label><input type="radio" name="dgii_status"><span>Sí, al día</span></label>
+          <label><input type="radio" name="dgii_status"><span>Con adeudos</span></label>
+          <label><input type="radio" name="dgii_status"><span>No lo sé / requiero revisión</span></label>
+        </div>
+      </div>
+      <div class="two">
+        <div class="q"><div class="ql">¿Contribuyente de ITBIS?</div>
+          <div class="rg">
+            <label><input type="radio" name="itbis"><span>Sí</span></label>
+            <label><input type="radio" name="itbis"><span>No</span></label>
+            <label><input type="radio" name="itbis"><span>No sé</span></label>
+          </div>
+        </div>
+        <div class="q"><div class="ql">Periodicidad declaración ITBIS</div>
+          <div class="rg">
+            <label><input type="radio" name="per_itbis"><span>Mensual</span></label>
+            <label><input type="radio" name="per_itbis"><span>Cuatrimestral</span></label>
+            <label><input type="radio" name="per_itbis"><span>No aplica</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="q"><div class="ql">¿Emite comprobantes fiscales (NCF / e-CF)?</div>
+        <div class="rg row">
+          <label><input type="radio" name="ncf"><span>Sí, regularmente</span></label>
+          <label><input type="radio" name="ncf"><span>A veces</span></label>
+          <label><input type="radio" name="ncf"><span>No aún</span></label>
+          <label><input type="radio" name="ncf"><span>Necesito implementarlo</span></label>
+        </div>
+      </div>
+      <div class="two">
+        <div class="q"><div class="ql">Comprobantes emitidos por mes</div>
+          <select id="f_ncf_vol">
+            <option value="">— Selecciona —</option>
+            <option>1 – 20</option><option>21 – 100</option>
+            <option>101 – 300</option><option>Más de 300</option>
+          </select>
+        </div>
+        <div class="q"><div class="ql">Retenciones ISR / ITBIS</div>
+          <div class="rg">
+            <label><input type="radio" name="ret"><span>Aplico a proveedores</span></label>
+            <label><input type="radio" name="ret"><span>Me retienen a mí</span></label>
+            <label><input type="radio" name="ret"><span>Ambas</span></label>
+            <label><input type="radio" name="ret"><span>No aplica</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3 -->
+  <div id="s2" class="section">
+    <div class="card">
+      <div class="sec-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        3. Nómina y personal
+      </div>
+      <div class="two">
+        <div class="q"><div class="ql">¿Empleados registrados en TSS?</div>
+          <div class="rg">
+            <label><input type="radio" name="tss"><span>Sí</span></label>
+            <label><input type="radio" name="tss"><span>No</span></label>
+            <label><input type="radio" name="tss"><span>En proceso</span></label>
+          </div>
+        </div>
+        <div class="q"><div class="ql">Número de empleados</div>
+          <select id="f_emp">
+            <option value="">— Selecciona —</option>
+            <option>0 (solo yo)</option><option>1 – 5</option>
+            <option>6 – 15</option><option>16 – 50</option><option>Más de 50</option>
+          </select>
+        </div>
+      </div>
+      <div class="q"><div class="ql">¿Procesa nómina y paga TSS mensualmente?</div>
+        <div class="rg row">
+          <label><input type="radio" name="nomina"><span>Sí</span></label>
+          <label><input type="radio" name="nomina"><span>No / con rezago</span></label>
+          <label><input type="radio" name="nomina"><span>Necesito implementarlo</span></label>
+        </div>
+      </div>
+      <div class="q"><div class="ql">¿Paga regalía pascual y beneficios correctamente?</div>
+        <div class="rg row">
+          <label><input type="radio" name="regalia"><span>Sí</span></label>
+          <label><input type="radio" name="regalia"><span>Parcialmente</span></label>
+          <label><input type="radio" name="regalia"><span>No / necesito orientación</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4 -->
+  <div id="s3" class="section">
+    <div class="card">
+      <div class="sec-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+        4. Contabilidad actual
+      </div>
+      <div class="q"><div class="ql">¿Lleva contabilidad actualmente?</div>
+        <div class="rg row">
+          <label><input type="radio" name="contab"><span>Sí, contador externo</span></label>
+          <label><input type="radio" name="contab"><span>Sí, internamente</span></label>
+          <label><input type="radio" name="contab"><span>No formalmente</span></label>
+        </div>
+      </div>
+      <div class="q"><div class="ql">¿Qué software usa?</div>
+        <div class="cg" id="sw-checks">
+          <label><input type="checkbox"><span>Conta-Sys</span></label>
+          <label><input type="checkbox"><span>QuickBooks</span></label>
+          <label><input type="checkbox"><span>SAP</span></label>
+          <label><input type="checkbox"><span>Excel / hojas de cálculo</span></label>
+          <label><input type="checkbox"><span>Ninguno</span></label>
+          <label><input type="checkbox"><span>Otro</span></label>
+        </div>
+      </div>
+      <div class="two">
+        <div class="q"><div class="ql">¿Tiene estados financieros del año anterior?</div>
+          <div class="rg">
+            <label><input type="radio" name="eeff"><span>Sí</span></label>
+            <label><input type="radio" name="eeff"><span>Parcialmente</span></label>
+            <label><input type="radio" name="eeff"><span>No</span></label>
+          </div>
+        </div>
+        <div class="q"><div class="ql">Ingresos anuales aproximados</div>
+          <select id="f_ingresos">
+            <option value="">— Selecciona —</option>
+            <option>Menos de RD$500,000</option>
+            <option>RD$500,001 – RD$3,000,000</option>
+            <option>RD$3,000,001 – RD$10,000,000</option>
+            <option>RD$10,000,001 – RD$30,000,000</option>
+            <option>Más de RD$30,000,000</option>
+            <option>Prefiero no indicarlo</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5 -->
+  <div id="s4" class="section">
+    <div class="card">
+      <div class="sec-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        5. Servicios de interés
+      </div>
+      <div class="q"><div class="ql">¿Qué servicios incluir en la iguala? <span class="req">*</span></div>
+        <div class="cg" id="svc-checks">
+          <label><input type="checkbox"><span>Contabilidad mensual y estados financieros</span></label>
+          <label><input type="checkbox"><span>Declaración mensual de ITBIS (IT-1)</span></label>
+          <label><input type="checkbox"><span>Declaración anual ISR (IR-2 / IR-3)</span></label>
+          <label><input type="checkbox"><span>Pagos a cuenta ISR (IR-17)</span></label>
+          <label><input type="checkbox"><span>Nómina y pagos a la TSS</span></label>
+          <label><input type="checkbox"><span>Gestión de comprobantes (NCF / e-CF)</span></label>
+          <label><input type="checkbox"><span>Retenciones de ISR e ITBIS</span></label>
+          <label><input type="checkbox"><span>Atención fiscalizaciones y requerimientos DGII</span></label>
+          <label><input type="checkbox"><span>Conciliación bancaria</span></label>
+          <label><input type="checkbox"><span>Planeación fiscal</span></label>
+          <label><input type="checkbox"><span>Asesoría financiera y presupuesto</span></label>
+        </div>
+      </div>
+      <div class="q"><div class="ql">¿Alguna necesidad urgente o situación pendiente?</div>
+        <textarea id="f_urgente" placeholder="Ej. declaración atrasada, fiscalización DGII, apertura de empresa..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6 -->
+  <div id="s5" class="section">
+    <div class="card">
+      <div class="sec-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        6. Preferencias de comunicación
+      </div>
+      <div class="q"><div class="ql">¿Cómo prefiere comunicarse?</div>
+        <div class="cg row" id="com-checks">
+          <label><input type="checkbox"><span>WhatsApp</span></label>
+          <label><input type="checkbox"><span>Correo electrónico</span></label>
+          <label><input type="checkbox"><span>Videollamada</span></label>
+          <label><input type="checkbox"><span>Visita presencial</span></label>
+        </div>
+      </div>
+      <div class="q"><div class="ql">Frecuencia de reportes</div>
+        <div class="rg row">
+          <label><input type="radio" name="freq"><span>Mensual</span></label>
+          <label><input type="radio" name="freq"><span>Trimestral</span></label>
+          <label><input type="radio" name="freq"><span>Solo cuando se requiera</span></label>
+        </div>
+      </div>
+      <div class="q"><div class="ql">¿Cómo se enteró de nuestros servicios?</div>
+        <select id="f_referido">
+          <option value="">— Selecciona —</option>
+          <option>Recomendación de conocido</option>
+          <option>Redes sociales (Instagram, Facebook)</option>
+          <option>Google / búsqueda en internet</option>
+          <option>LinkedIn</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="q"><div class="ql">Comentarios adicionales</div>
+        <textarea id="f_comentarios" placeholder="Cualquier información que considere relevante..."></textarea>
+      </div>
+    </div>
+    <button class="btn success" id="btn-enviar" onclick="enviarYDescargar()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+      Enviar y descargar PDF
+    </button>
+  </div>
+
+  <!-- PANTALLA DE CONFIRMACIÓN -->
+  <div id="confirmacion" style="display:none;">
+    <div class="card" style="text-align:center; padding: 3rem 2rem;">
+      <div style="width:64px;height:64px;border-radius:50%;background:#d1fae5;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:500;color:var(--azul);margin-bottom:0.75rem;">¡Encuesta enviada!</h2>
+      <p style="font-size:15px;color:var(--gris);margin-bottom:0.5rem;">Sus respuestas fueron enviadas a la Lcda. Raquel Ma. Andújar, CPA.</p>
+      <p style="font-size:14px;color:var(--gris);margin-bottom:2rem;">Su PDF ya fue descargado automáticamente.</p>
+      <button class="btn" onclick="descargarOtraVez()" style="margin:0 auto;display:inline-flex;align-items:center;gap:6px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Descargar PDF nuevamente
+      </button>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <div class="nav">
+    <button class="btn" id="btn-prev" onclick="navStep(-1)" style="display:none">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Anterior
+    </button>
+    <span></span>
+    <button class="btn primary" id="btn-next" onclick="navStep(1)">
+      Siguiente
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <div class="footer">
+    <p>Formulario preparado por <span>Lcda. Raquel Ma. Andújar, CPA</span> · Información de uso confidencial</p>
+  </div>
+
+</div>
+
+<script>
+let current = 0;
+const total = 6;
+
+function goTo(n) {
+  document.getElementById('s'+current).classList.remove('active');
+  document.querySelectorAll('.tab-btn')[current].classList.remove('active');
+  current = n;
+  document.getElementById('s'+current).classList.add('active');
+  document.querySelectorAll('.tab-btn')[current].classList.add('active');
+  const pct = Math.round(((current+1)/total)*100);
+  document.getElementById('prog').style.width = pct+'%';
+  document.getElementById('step-info').textContent = 'Sección '+(current+1)+' de '+total;
+  document.getElementById('step-pct').textContent = pct+'%';
+  document.getElementById('btn-prev').style.display = current===0?'none':'flex';
+  document.getElementById('btn-next').style.display = current===total-1?'none':'flex';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function navStep(dir){ goTo(Math.max(0,Math.min(total-1,current+dir))); }
+
+function recopilarDatos(){
+  return {
+    'Razón social': val('f_razon'),
+    'RNC / Cédula': val('f_rnc'),
+    'Contacto principal': val('f_contacto'),
+    'Cargo': val('f_cargo'),
+    'Correo electrónico': val('f_email'),
+    'Teléfono / WhatsApp': val('f_tel'),
+    'Tipo de entidad': val('f_entidad'),
+    'Sector / Giro': val('f_sector'),
+    'Registro DGII': radVal('dgii_reg'),
+    'Estatus DGII': radVal('dgii_status'),
+    'Contribuyente ITBIS': radVal('itbis'),
+    'Periodicidad ITBIS': radVal('per_itbis'),
+    'Comprobantes NCF/e-CF': radVal('ncf'),
+    'Volumen comprobantes/mes': val('f_ncf_vol'),
+    'Retenciones ISR/ITBIS': radVal('ret'),
+    'Empleados en TSS': radVal('tss'),
+    'Número de empleados': val('f_emp'),
+    'Nómina y TSS al día': radVal('nomina'),
+    'Regalía pascual': radVal('regalia'),
+    'Lleva contabilidad': radVal('contab'),
+    'Software contable': checkVals('sw-checks'),
+    'Estados financieros': radVal('eeff'),
+    'Ingresos anuales': val('f_ingresos'),
+    'Servicios de interés': checkVals('svc-checks'),
+    'Necesidades urgentes': val('f_urgente')||'Ninguna',
+    'Canal de comunicación': checkVals('com-checks'),
+    'Frecuencia de reportes': radVal('freq'),
+    'Cómo nos conoció': val('f_referido'),
+    'Comentarios': val('f_comentarios')||'Ninguno'
+  };
+}
+
+async function enviarYDescargar(){
+  const btn = document.getElementById('btn-enviar');
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Enviando...';
+
+  const datos = recopilarDatos();
+
+  const formData = new FormData();
+  formData.append('_subject', 'Nuevo levantamiento: ' + (datos['Razón social']||'Cliente nuevo'));
+  formData.append('_replyto', datos['Correo electrónico']||'');
+  for(const [k,v] of Object.entries(datos)){
+    formData.append(k, v);
+  }
+
+  try {
+    await fetch('https://formspree.io/f/mlgvnbyj', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+  } catch(e) {}
+
+  generarPDF();
+
+  document.getElementById('s5').style.display = 'none';
+  document.getElementById('confirmacion').style.display = 'block';
+  document.querySelector('.nav').style.display = 'none';
+  document.querySelector('.tabs').style.display = 'none';
+  document.querySelector('.progress-wrap').style.display = 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function descargarOtraVez(){ generarPDF(); }
+
+function val(id){ const e=document.getElementById(id); return e?e.value.trim():''; }
+function radVal(name){ const e=document.querySelector('input[name="'+name+'"]:checked'); return e?e.parentElement.textContent.trim():'No indicado'; }
+function checkVals(id){ return Array.from(document.querySelectorAll('#'+id+' input[type=checkbox]:checked')).map(e=>e.parentElement.textContent.trim()).join(', ')||'Ninguno seleccionado'; }
+
+function generarPDF(){
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  const W=210, M=15, cw=W-M*2;
+  let y=0;
+  const azul=[26,61,110];
+  const dorado=[184,145,58];
+  const gris=[100,100,100];
+  const negro=[30,30,30];
+  const blanco=[255,255,255];
+  const azulClaro=[232,240,250];
+
+  function checkY(n){ if(y+n>275){ nuevaPagina(); } }
+
+  function nuevaPagina(){
+    doc.addPage();
+    doc.setFillColor(...azul);
+    doc.rect(0,0,210,10,'F');
+    doc.setFontSize(8); doc.setFont('helvetica','italic');
+    doc.setTextColor(...blanco);
+    doc.text('Lcda. Raquel Ma. Andújar, CPA — Levantamiento inicial de servicios contables',M,6.5);
+    y=18;
+  }
+
+  function seccion(titulo){
+    checkY(14);
+    doc.setFillColor(...azul);
+    doc.rect(M,y,cw,8,'F');
+    doc.setTextColor(...blanco);
+    doc.setFontSize(10); doc.setFont('helvetica','bold');
+    doc.text(titulo,M+3,y+5.5);
+    y+=12;
+    doc.setTextColor(...negro);
+  }
+
+  function campo(label,value){
+    const lines=doc.splitTextToSize(value||'No indicado',cw-4);
+    checkY(7+lines.length*5);
+    doc.setFontSize(8.5); doc.setFont('helvetica','bold');
+    doc.setTextColor(...gris);
+    doc.text(label,M,y); y+=4.5;
+    doc.setFont('helvetica','normal');
+    doc.setTextColor(...negro);
+    doc.text(lines,M+2,y);
+    y+=lines.length*5+2;
+  }
+
+  doc.setFillColor(...azul);
+  doc.rect(0,0,210,35,'F');
+  doc.setFillColor(...dorado);
+  doc.rect(0,33,210,2,'F');
+
+  doc.setTextColor(...dorado);
+  doc.setFontSize(9); doc.setFont('helvetica','bold');
+  doc.text('CONTADORA PÚBLICA AUTORIZADA',M,11);
+
+  doc.setTextColor(...blanco);
+  doc.setFontSize(20); doc.setFont('helvetica','bold');
+  doc.text('Lcda. Raquel Ma. Andújar, CPA',M,21);
+
+  doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.text('Levantamiento inicial — Servicios contables · República Dominicana',M,28);
+
+  doc.setTextColor(...gris);
+  doc.setFontSize(8.5);
+  doc.text('Fecha: '+new Date().toLocaleDateString('es-DO',{year:'numeric',month:'long',day:'numeric'}),W-M,28,'right');
+
+  y=45;
+
+  seccion('1. Datos generales');
+  campo('Razón social',val('f_razon'));
+  campo('RNC / Cédula',val('f_rnc'));
+  campo('Contacto principal',val('f_contacto'));
+  campo('Cargo',val('f_cargo'));
+  campo('Correo electrónico',val('f_email'));
+  campo('Teléfono / WhatsApp',val('f_tel'));
+  campo('Tipo de entidad',val('f_entidad'));
+  campo('Sector / Giro',val('f_sector'));
+
+  seccion('2. Situación tributaria (DGII)');
+  campo('Registro DGII',radVal('dgii_reg'));
+  campo('Estatus DGII',radVal('dgii_status'));
+  campo('Contribuyente ITBIS',radVal('itbis'));
+  campo('Periodicidad ITBIS',radVal('per_itbis'));
+  campo('Comprobantes (NCF / e-CF)',radVal('ncf'));
+  campo('Volumen mensual de comprobantes',val('f_ncf_vol'));
+  campo('Retenciones ISR / ITBIS',radVal('ret'));
+
+  seccion('3. Nómina y personal');
+  campo('Empleados registrados en TSS',radVal('tss'));
+  campo('Número de empleados',val('f_emp'));
+  campo('Nómina y TSS al día',radVal('nomina'));
+  campo('Regalía pascual y beneficios',radVal('regalia'));
+
+  seccion('4. Contabilidad actual');
+  campo('Lleva contabilidad',radVal('contab'));
+  campo('Software utilizado',checkVals('sw-checks'));
+  campo('Estados financieros disponibles',radVal('eeff'));
+  campo('Ingresos anuales aprox.',val('f_ingresos'));
+
+  seccion('5. Servicios de interés');
+  campo('Servicios para la iguala',checkVals('svc-checks'));
+  campo('Necesidades urgentes',val('f_urgente')||'Ninguna indicada');
+
+  seccion('6. Preferencias');
+  campo('Canal de comunicación',checkVals('com-checks'));
+  campo('Frecuencia de reportes',radVal('freq'));
+  campo('Cómo nos conoció',val('f_referido'));
+  campo('Comentarios adicionales',val('f_comentarios')||'Ninguno');
+
+  const pages=doc.getNumberOfPages();
+  for(let i=1;i<=pages;i++){
+    doc.setPage(i);
+    doc.setFillColor(...azulClaro);
+    doc.rect(0,285,210,12,'F');
+    doc.setFontSize(8); doc.setFont('helvetica','normal');
+    doc.setTextColor(...azul);
+    doc.text('Lcda. Raquel Ma. Andújar, CPA  ·  Información confidencial del cliente',M,291);
+    doc.text('Página '+i+' de '+pages,W-M,291,'right');
+  }
+
+  const empresa=val('f_razon')||'cliente';
+  doc.save('Levantamiento_'+empresa.replace(/\s+/g,'_')+'.pdf');
+}
+</script>
+</body>
+</html>
