@@ -89,8 +89,8 @@ nav{
   pointer-events:none;
 }
 .hero-left{
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;
+  display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;
+  text-align:left;
   padding:5rem 8%;position:relative;z-index:1;
   max-width:900px;margin:0 auto;
 }
@@ -111,13 +111,13 @@ nav{
   color:#fff;line-height:1.15;
   margin-bottom:1.5rem;font-weight:400;
 }
-.hero-title em{color:var(--dorado);font-style:italic}
+.hero-title em{color:var(--dorado);font-style:normal}
 .hero-desc{
   font-size:15px;color:rgba(255,255,255,.6);
   line-height:1.8;margin-bottom:2.5rem;font-weight:300;
-  max-width:600px;text-align:center;
+  max-width:600px;text-align:left;
 }
-.hero-btns{display:flex;flex-direction:row;gap:14px;justify-content:center;flex-wrap:wrap;}
+.hero-btns{display:flex;flex-direction:row;gap:14px;justify-content:flex-start;flex-wrap:wrap;}
 .btn-wa{
   display:flex;align-items:center;justify-content:center;gap:10px;
   background:var(--dorado);color:#fff;
@@ -339,8 +339,7 @@ footer{
       <span>RA</span>
     </div>
     <div class="nav-logo-text">
-      <div class="nav-logo-name">Raquel Ma. Andújar</div>
-      <div class="nav-logo-cred">Contadora Pública Autorizada</div>
+      <div class="nav-logo-cred">Contadora Pública Autorizada · CPA</div>
     </div>
   </div>
   <div class="nav-links">
@@ -355,7 +354,7 @@ footer{
 <div class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Contadora Pública Autorizada · República Dominicana</div>
-    <h1 class="hero-title" style="font-size:clamp(44px,5.5vw,74px);line-height:1.05;margin-bottom:0.4rem">Raquel Ma. Andújar, <em>CPA</em></h1><p style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,145,58,.75);margin-bottom:1.5rem;font-weight:500">Servicios Contables y Tributarios</p>
+    <h1 class="hero-title" style="font-size:clamp(28px,3.8vw,52px);line-height:1.1;margin-bottom:0.4rem;white-space:nowrap">Lcda. Raquel Ma. Andújar, <span style="color:var(--dorado);font-style:normal;">CPA</span></h1><p style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,145,58,.75);margin-bottom:1.5rem;font-weight:500">Servicios Contables y Tributarios</p>
     <p class="hero-desc">Especializada en igualas mensuales, cumplimiento tributario ante la DGII y manejo integral de nómina y TSS para empresas en República Dominicana.</p>
     <div class="hero-btns">
       <a class="btn-wa" href="https://wa.me/18297860922?text=Hola%20Lcda.%20Raquel%2C%20me%20interesa%20conocer%20sus%20servicios%20contables." target="_blank">💬 Escribir por WhatsApp</a>
