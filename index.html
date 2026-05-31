@@ -464,6 +464,42 @@ async function enviar(){
   document.getElementById('progreso-wrap').style.display='none';
   document.getElementById('loading').classList.add('visible');
 
+  // Enviar datos a Formspree
+  const d = getDatos();
+  try {
+    await fetch('https://formspree.io/f/xnjrkaby', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({
+        empresa: d.razon_social||'N/D',
+        rnc: d.rnc||'N/D',
+        contacto: d.contacto||'N/D',
+        telefono: d.telefono||'N/D',
+        correo: d.correo||'N/D',
+        entidad: d.entidad||'N/D',
+        sector: d.sector||'N/D',
+        dgii_corriente: d.dgii_corriente||'N/D',
+        itbis: d.itbis||'N/D',
+        comprobantes: d.comprobantes||'N/D',
+        requerimiento: d.requerimiento||'N/D',
+        empleados: d.empleados||'N/D',
+        tss: d.tss||'N/D',
+        nomina_pago: d.nomina_pago||'N/D',
+        contabilidad: d.contabilidad||'N/D',
+        software: d.software||'N/D',
+        estados: d.estados||'N/D',
+        ingresos: d.ingresos||'N/D',
+        servicios: Array.isArray(d.servicios)?d.servicios.join(', '):(d.servicios||'N/D'),
+        urgente: d.urgente||'Ninguno',
+        comunicacion: d.comunicacion||'N/D',
+        referido: d.referido||'N/D',
+        comentarios: d.comentarios||'N/D'
+      })
+    });
+  } catch(e) {
+    console.log('Formspree error:', e);
+  }
+
   const d=getDatos();
 
   try{
