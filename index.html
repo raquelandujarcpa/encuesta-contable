@@ -1,629 +1,384 @@
 <!DOCTYPE html>
-<!-- Encuesta Raquel Andújar CPA v2 -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Levantamiento Inicial – Raquel Andújar CPA</title>
+<title>Levantamiento Inicial — Lcda. Raquel Ma. Andújar, CPA</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F4F6F9;color:#1E2535;min-height:100vh}
 .wrap{max-width:680px;margin:0 auto;padding:24px 16px}
-
-.header{background:#0B2545;border-radius:14px;padding:20px 24px;margin-bottom:24px;text-align:center}
-.header .logo{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#fff}
-.header .cred{font-size:10px;color:#C9973F;letter-spacing:.1em;margin-top:4px}
-.header .sub{font-size:12px;color:rgba(176,200,232,.7);margin-top:6px}
-
-.progreso-wrap{margin-bottom:20px}
-.progreso-bar{background:#E8EEF7;border-radius:999px;height:6px;overflow:hidden}
-.progreso-fill{background:linear-gradient(90deg,#0B2545,#C9973F);height:6px;border-radius:999px;transition:width .4s ease}
-.progreso-txt{font-size:11px;color:#6B7280;margin-top:6px;text-align:right}
-
-.seccion{display:none}
-.seccion.activa{display:block}
-.sec-titulo{background:#0B2545;color:#fff;padding:10px 16px;border-radius:10px 10px 0 0;font-size:13px;font-weight:700}
-.sec-cuerpo{background:#fff;border:2px solid #64748B;border-top:none;border-radius:0 0 10px 10px;padding:20px}
-
+.header{background:#1A3A5C;border-radius:14px;padding:20px 24px;margin-bottom:24px}
+.header-inner{display:flex;align-items:center;gap:18px}
+.header-circle{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#B8913A,#D4A84B);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fff;flex-shrink:0}
+.header-cred{font-size:10px;color:#C9973F;letter-spacing:.12em;font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.header-name{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:4px}
+.header-sub{font-size:11.5px;color:rgba(176,200,232,.65)}
+.progreso-bar{background:#E8EEF7;border-radius:999px;height:6px;margin-bottom:6px}
+.progreso-fill{background:linear-gradient(90deg,#0B2545,#C9973F);height:6px;border-radius:999px;transition:width .4s}
+.progreso-txt{font-size:11px;color:#6B7280;text-align:right;margin-bottom:16px}
+.sec{display:none}
+.sec.activa{display:block}
+.sec-tit{background:#0B2545;color:#fff;padding:10px 16px;border-radius:10px 10px 0 0;font-size:13px;font-weight:700}
+.sec-body{background:#fff;border:2px solid #64748B;border-top:none;border-radius:0 0 10px 10px;padding:20px}
 .campo{margin-bottom:16px}
 .campo label{display:block;font-size:13px;font-weight:700;color:#0B2545;margin-bottom:6px}
-.campo label .req{color:#C9973F}
-.campo input,.campo select,.campo textarea{width:100%;padding:10px 12px;border:2px solid #64748B;border-radius:8px;font-size:13px;color:#0B2545;background:#fff;transition:border-color .2s;font-family:inherit;font-weight:500}
-.campo input::placeholder{color:#94A3B8}
-.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:#0B2545;box-shadow:0 0 0 3px rgba(11,37,69,.1)}
-.campo select{color:#0B2545}
-.campo textarea{resize:vertical;min-height:80px}
-.dos-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:480px){.dos-col{grid-template-columns:1fr}}
-
-.opciones{display:flex;flex-direction:column;gap:8px;margin-top:4px}
-.opciones.horizontal{flex-direction:row;flex-wrap:wrap;gap:8px}
-.opcion{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #94A3B8;border-radius:8px;padding:9px 14px;cursor:pointer;transition:all .2s;font-size:13px;color:#1E2535;font-weight:500}
-.opcion:hover{border-color:#C9973F;background:#FDF0D5;color:#0B2545}
-.opcion input{width:16px;height:16px;accent-color:#0B2545;cursor:pointer;flex-shrink:0}
-.opcion.seleccionada{border-color:#0B2545;background:#E8EEF7;color:#0B2545;font-weight:600}
-
-.btns{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:10px}
-.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;border:none;transition:all .2s;font-family:inherit}
-.btn-prev{background:#F4F6F9;color:#0B2545;border:1.5px solid #E8EEF7}
-.btn-prev:hover{background:#E8EEF7}
-.btn-next{background:#0B2545;color:#fff;margin-left:auto}
-.btn-next:hover{background:#1A4B8C}
-.btn-enviar{background:linear-gradient(135deg,#C9973F,#A07828);color:#fff}
-.btn-enviar:hover{opacity:.9}
-
-/* CONFIRMACIÓN PARA EL CLIENTE */
-.confirmacion{display:none;background:#fff;border-radius:14px;border:1px solid #E8EEF7;padding:40px 24px;text-align:center}
-.confirmacion.visible{display:block}
+.req{color:#C9973F}
+.campo input,.campo select,.campo textarea{width:100%;padding:10px 12px;border:2px solid #64748B;border-radius:8px;font-size:13px;color:#0B2545;background:#fff;font-family:inherit}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:#0B2545}
+.campo textarea{min-height:70px;resize:vertical}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.dos{grid-template-columns:1fr}}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.opt{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #64748B;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:13px;color:#1E2535;font-weight:500;transition:all .2s}
+.opt:hover{border-color:#C9973F;background:#FDF0D5}
+.opt.sel{border-color:#0B2545;background:#E8EEF7;font-weight:600}
+.opt input{width:15px;height:15px;accent-color:#0B2545;flex-shrink:0}
+.btns{display:flex;justify-content:space-between;margin-top:20px}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btn-p{background:#F4F6F9;color:#0B2545;border:2px solid #64748B}
+.btn-n{background:#0B2545;color:#fff;margin-left:auto}
+.btn-e{background:linear-gradient(135deg,#C9973F,#A07828);color:#fff}
+.conf{display:none;background:#fff;border-radius:14px;border:1px solid #E8EEF7;padding:40px 24px;text-align:center}
+.conf.vis{display:block}
 .conf-ico{font-size:48px;margin-bottom:16px}
-.conf-titulo{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#0B2545;margin-bottom:10px}
+.conf-tit{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#0B2545;margin-bottom:10px}
 .conf-desc{font-size:14px;color:#4B5563;line-height:1.7;margin-bottom:20px}
-.conf-contacto{background:#F4F6F9;border-radius:10px;padding:14px;font-size:13px;color:#0B2545}
-.conf-contacto strong{color:#C9973F}
-
-/* LOADING */
-.loading{display:none;text-align:center;padding:40px 20px;background:#fff;border-radius:14px;border:1px solid #E8EEF7}
-.loading.visible{display:block}
-.spinner{width:48px;height:48px;border:4px solid #E8EEF7;border-top-color:#0B2545;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+.conf-tel{background:#F4F6F9;border-radius:10px;padding:14px;font-size:13px;color:#0B2545}
+.load{display:none;text-align:center;padding:40px;background:#fff;border-radius:14px}
+.load.vis{display:block}
+.spin{width:44px;height:44px;border:4px solid #E8EEF7;border-top-color:#0B2545;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-txt{font-size:13px;color:#4B5563;margin-bottom:6px}
-.loading-sub{font-size:11px;color:#9CA3AF}
-
-/* ── DIAGNÓSTICO INTERNO (solo Raquel lo ve) ── */
-.diagnostico{display:none;margin-top:24px}
-.diagnostico.visible{display:block}
-
-.diag-banner{background:#C9973F;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.diag-banner span{font-size:13px;font-weight:700;color:#fff}
-.diag-banner small{font-size:11px;color:rgba(255,255,255,.8)}
-
-.diag-card{background:#fff;border:1px solid #E8EEF7;border-radius:12px;overflow:hidden;margin-bottom:16px}
-.diag-card-hdr{background:#0B2545;color:#fff;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:.04em}
-.diag-card-body{padding:14px}
-
-/* riesgo */
-.riesgo-box{display:flex;align-items:center;gap:14px;border-radius:10px;padding:14px 16px}
-.riesgo-box.alto{background:#FEE2E2;border:1.5px solid #FCA5A5}
-.riesgo-box.medio{background:#FEF9C3;border:1.5px solid #FDE047}
-.riesgo-box.bajo{background:#DCFCE7;border:1.5px solid #86EFAC}
-.riesgo-ico{font-size:28px}
-.riesgo-titulo{font-size:14px;font-weight:700}
-.riesgo-box.alto .riesgo-titulo{color:#991B1B}
-.riesgo-box.medio .riesgo-titulo{color:#854D0E}
-.riesgo-box.bajo .riesgo-titulo{color:#166534}
-.riesgo-desc{font-size:11.5px;margin-top:4px;line-height:1.5}
-.riesgo-box.alto .riesgo-desc{color:#7F1D1D}
-.riesgo-box.medio .riesgo-desc{color:#713F12}
-.riesgo-box.bajo .riesgo-desc{color:#14532D}
-
-/* tabla diagnóstico */
-.dtable{width:100%;border-collapse:collapse;font-size:11px}
-.dtable th{background:#F4F6F9;padding:6px 8px;border:1px solid #E8EEF7;font-size:10px;font-weight:700;color:#0B2545;text-align:left}
-.dtable td{padding:7px 8px;border:1px solid #E8EEF7;vertical-align:middle}
-.dtable tr:nth-child(even) td{background:#FAFBFC}
-.tag{border-radius:4px;padding:2px 7px;font-size:10px;font-weight:700;white-space:nowrap}
-.tag-r{background:#FEE2E2;color:#991B1B}
-.tag-a{background:#FEF9C3;color:#854D0E}
-.tag-v{background:#DCFCE7;color:#166534}
-
-/* paquete recomendado */
-.paquete-rec{border-radius:10px;border:2px solid #C9973F;padding:16px;background:#FDF0D5}
-.pkg-nombre{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#0B2545}
-.pkg-precio{font-size:22px;font-weight:700;color:#C9973F;margin:6px 0}
-.pkg-porque{font-size:12px;color:#4B5563;line-height:1.6;margin-top:8px}
-.pkg-incluye{margin-top:10px;display:flex;flex-direction:column;gap:4px}
-.pkg-feat{font-size:11.5px;color:#1E2535}
-.pkg-feat::before{content:'✓ ';color:#C9973F;font-weight:700}
-
-/* sistema recomendado */
-.sistema-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.sist-item{background:#F4F6F9;border:1.5px solid #CBD5E1;border-radius:8px;padding:10px 12px}
-.sist-item.recomendado{background:#0B2545;border-color:#C9973F;border-width:2px}
-.sist-nombre{font-size:12px;font-weight:700;color:#0B2545;margin-bottom:3px}
-.sist-item.recomendado .sist-nombre{color:#C9973F}
-.sist-desc{font-size:11px;color:#374151;line-height:1.4}
-.sist-item.recomendado .sist-desc{color:rgba(176,200,232,.9)}
-.sist-badge{font-size:9px;font-weight:700;color:#C9973F;letter-spacing:.06em;margin-bottom:4px}
-
-/* fases */
-.fases{display:flex;flex-direction:column;gap:8px}
-.fase{border:1px solid #E8EEF7;border-radius:8px;overflow:hidden}
-.fase-hdr{background:#F4F6F9;padding:7px 12px;display:flex;align-items:center;gap:8px}
-.fase-num{background:#0B2545;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
-.fase-tit{font-size:12px;font-weight:700;color:#0B2545;flex:1}
-.fase-tiempo{font-size:10px;color:#C9973F;font-weight:600}
-.fase-items{padding:8px 12px;display:flex;flex-direction:column;gap:3px}
-.fase-item{font-size:11px;color:#1E2535}
-.fase-item::before{content:'→ ';color:#C9973F;font-weight:700}
-
-/* hacerse */
-.hacerse-list{display:flex;flex-direction:column;gap:8px}
-.hacerse-item{display:flex;align-items:flex-start;gap:10px;border-radius:8px;padding:10px 12px;border:1px solid #E8EEF7}
-.dtable td{padding:7px 8px;border:1px solid #CBD5E1;vertical-align:middle;color:#1E2535}
-.dtable tr:nth-child(even) td{background:#F8FAFC}
-.fase-item{font-size:11px;color:#1E2535;font-weight:500}
-.hacerse-item.normal{background:#F4F6F9;border:1.5px solid #CBD5E1}
-.hacerse-item.urgente{background:#FEE2E2;border:1.5px solid #F87171}
-.h-titulo{font-size:12px;font-weight:700;color:#0B2545;margin-bottom:2px}
-.h-desc{font-size:11px;color:#374151;line-height:1.5}
-
-/* propuesta */
-.prop-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.prop-item{border-radius:8px;padding:12px;text-align:center}
-.prop-n{background:#F4F6F9;border:1px solid #E8EEF7}
-.prop-d{background:#0B2545}
-.prop-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
-.prop-n .prop-label{color:#6B7280}
-.prop-d .prop-label{color:rgba(176,200,232,.7)}
-.prop-monto{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#C9973F}
-.prop-det{font-size:10px;margin-top:2px}
-.prop-n .prop-det{color:#6B7280}
-.prop-d .prop-det{color:rgba(176,200,232,.6)}
-
-.btn-pdf{display:block;width:100%;padding:13px;background:linear-gradient(135deg,#C9973F,#A07828);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:16px;font-family:inherit}
-.btn-pdf:hover{opacity:.9}
-
-@media print{
-  body{background:#fff}
-  .confirmacion,.progreso-wrap,.header,.diag-banner{display:none!important}
-  .diagnostico{display:block!important}
-  @page{margin:1.2cm;size:A4}
-}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div style="background:#1A3A5C;border-radius:14px;padding:20px 24px;margin-bottom:24px">
-    <div style="display:flex;align-items:center;gap:18px">
-      <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#B8913A,#D4A84B);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fff;flex-shrink:0;box-shadow:0 4px 14px rgba(184,145,58,.4)">RA</div>
-      <div>
-        <div style="font-size:10px;color:#C9973F;letter-spacing:.12em;font-weight:700;text-transform:uppercase;margin-bottom:5px">Contadora Pública Autorizada</div>
-        <div style="font-family:Georgia,serif;font-size:20px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:4px">Lcda. Raquel Ma. Andújar, CPA</div>
-        <div style="font-size:11.5px;color:rgba(176,200,232,.65)">Levantamiento inicial — Servicios contables · República Dominicana</div>
-      </div>
+<div class="header">
+  <div class="header-inner">
+    <div class="header-circle">RA</div>
+    <div>
+      <div class="header-cred">Contadora Pública Autorizada</div>
+      <div class="header-name">Lcda. Raquel Ma. Andújar, CPA</div>
+      <div class="header-sub">Levantamiento inicial — Servicios contables · República Dominicana</div>
     </div>
   </div>
+</div>
 
-  <div class="progreso-wrap" id="progreso-wrap">
-    <div class="progreso-bar"><div class="progreso-fill" id="progreso" style="width:17%"></div></div>
-    <div class="progreso-txt" id="progreso-txt">Sección 1 de 6</div>
+<div id="prog-wrap">
+  <div class="progreso-bar"><div class="progreso-fill" id="pfill" style="width:17%"></div></div>
+  <div class="progreso-txt" id="ptxt">Sección 1 de 6</div>
+</div>
+
+<form id="frm">
+
+<div class="sec activa" id="s1">
+  <div class="sec-tit">📋 1. Datos generales</div>
+  <div class="sec-body">
+    <div class="dos">
+      <div class="campo"><label>Razón social <span class="req">*</span></label><input name="empresa" required></div>
+      <div class="campo"><label>RNC / Cédula <span class="req">*</span></label><input name="rnc" required></div>
+    </div>
+    <div class="dos">
+      <div class="campo"><label>Contacto principal <span class="req">*</span></label><input name="contacto" required></div>
+      <div class="campo"><label>Teléfono / WhatsApp</label><input name="telefono"></div>
+    </div>
+    <div class="dos">
+      <div class="campo"><label>Correo electrónico</label><input type="email" name="correo"></div>
+      <div class="campo"><label>Tipo de entidad</label>
+        <select name="entidad">
+          <option value="">— Selecciona —</option>
+          <option>S.R.L.</option><option>S.A.</option><option>Persona Física con Negocio</option><option>EIRL</option><option>Otro</option>
+        </select>
+      </div>
+    </div>
+    <div class="campo"><label>Sector / Giro <span class="req">*</span></label>
+      <select name="sector" required>
+        <option value="">— Selecciona —</option>
+        <option>Comercio</option><option>Restaurante / Bar / Alimentos</option><option>Distribuidora</option><option>Ferretería</option><option>Call Center / BPO</option><option>Construcción</option><option>Servicios profesionales</option><option>Manufactura</option><option>Salud</option><option>Transporte</option><option>Otro</option>
+      </select>
+    </div>
+    <div class="btns"><button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button></div>
   </div>
+</div>
 
-  <form id="form">
-    <!-- SEC 1 -->
-    <div class="seccion activa" data-sec="1">
-      <div class="sec-titulo">📋 1. Datos generales</div>
-      <div class="sec-cuerpo">
-        <div class="dos-col">
-          <div class="campo"><label>Razón social <span class="req">*</span></label><input type="text" name="razon_social" required></div>
-          <div class="campo"><label>RNC / Cédula <span class="req">*</span></label><input type="text" name="rnc" required></div>
-        </div>
-        <div class="dos-col">
-          <div class="campo"><label>Contacto principal <span class="req">*</span></label><input type="text" name="contacto" required></div>
-          <div class="campo"><label>Teléfono / WhatsApp</label><input type="text" name="telefono"></div>
-        </div>
-        <div class="dos-col">
-          <div class="campo"><label>Correo electrónico</label><input type="email" name="correo"></div>
-          <div class="campo"><label>Tipo de entidad</label>
-            <select name="entidad">
-              <option value="">— Selecciona —</option>
-              <option>S.R.L.</option><option>S.A.</option><option>Persona Física con Negocio</option><option>EIRL</option><option>Otro</option>
-            </select>
-          </div>
-        </div>
-        <div class="campo"><label>Sector / Giro <span class="req">*</span></label>
-          <select name="sector" required>
-            <option value="">— Selecciona —</option>
-            <option>Comercio</option><option>Restaurante / Bar / Alimentos</option><option>Distribuidora</option><option>Ferretería</option><option>Call Center / BPO</option><option>Construcción</option><option>Servicios profesionales</option><option>Manufactura</option><option>Salud</option><option>Transporte</option><option>Otro</option>
-          </select>
-        </div>
-        <div class="btns"><button type="button" class="btn btn-next" onclick="siguiente()">Siguiente →</button></div>
+<div class="sec" id="s2">
+  <div class="sec-tit">🏛️ 2. Situación tributaria (DGII)</div>
+  <div class="sec-body">
+    <div class="campo"><label>¿Tiene RNC activo? <span class="req">*</span></label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="rnc_activo" value="si"> Sí</label>
+        <label class="opt"><input type="radio" name="rnc_activo" value="proceso"> En proceso</label>
+        <label class="opt"><input type="radio" name="rnc_activo" value="no"> No</label>
       </div>
     </div>
-
-    <!-- SEC 2 -->
-    <div class="seccion" data-sec="2">
-      <div class="sec-titulo">🏛️ 2. Situación tributaria (DGII)</div>
-      <div class="sec-cuerpo">
-        <div class="campo"><label>¿Tiene RNC activo? <span class="req">*</span></label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="rnc_activo" value="si" required> Sí</label>
-            <label class="opcion"><input type="radio" name="rnc_activo" value="proceso"> En proceso</label>
-            <label class="opcion"><input type="radio" name="rnc_activo" value="no"> No</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Está al corriente con la DGII?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="dgii_corriente" value="si"> Sí, al día</label>
-            <label class="opcion"><input type="radio" name="dgii_corriente" value="adeudos"> Con adeudos</label>
-            <label class="opcion"><input type="radio" name="dgii_corriente" value="no_se"> No lo sé</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Declara ITBIS mensualmente?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="itbis" value="si"> Sí</label>
-            <label class="opcion"><input type="radio" name="itbis" value="no"> No</label>
-            <label class="opcion"><input type="radio" name="itbis" value="no_se"> No sé</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Qué tipo de comprobantes usa?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="comprobantes" value="ecf"> e-CF electrónico</label>
-            <label class="opcion"><input type="radio" name="comprobantes" value="ncf"> NCF físico</label>
-            <label class="opcion"><input type="radio" name="comprobantes" value="no"> No uso</label>
-            <label class="opcion"><input type="radio" name="comprobantes" value="implementar"> Necesito implementarlo</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Ha recibido requerimientos o cartas de la DGII?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="requerimiento" value="si"> Sí</label>
-            <label class="opcion"><input type="radio" name="requerimiento" value="no"> No</label>
-          </div>
-        </div>
-        <div class="btns">
-          <button type="button" class="btn btn-prev" onclick="anterior()">← Anterior</button>
-          <button type="button" class="btn btn-next" onclick="siguiente()">Siguiente →</button>
-        </div>
+    <div class="campo"><label>¿Está al corriente con la DGII?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="dgii" value="si"> Sí, al día</label>
+        <label class="opt"><input type="radio" name="dgii" value="adeudos"> Con adeudos</label>
+        <label class="opt"><input type="radio" name="dgii" value="no_se"> No lo sé</label>
       </div>
     </div>
-
-    <!-- SEC 3 -->
-    <div class="seccion" data-sec="3">
-      <div class="sec-titulo">👥 3. Nómina y personal</div>
-      <div class="sec-cuerpo">
-        <div class="campo"><label>Número de empleados</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="empleados" value="0"> 0</label>
-            <label class="opcion"><input type="radio" name="empleados" value="1-5"> 1 – 5</label>
-            <label class="opcion"><input type="radio" name="empleados" value="6-15"> 6 – 15</label>
-            <label class="opcion"><input type="radio" name="empleados" value="16+"> Más de 16</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Empleados registrados en TSS?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="tss" value="si"> Sí</label>
-            <label class="opcion"><input type="radio" name="tss" value="no"> No</label>
-            <label class="opcion"><input type="radio" name="tss" value="parcial"> Parcialmente</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Cómo paga la nómina?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="nomina_pago" value="transferencia"> Transferencia bancaria</label>
-            <label class="opcion"><input type="radio" name="nomina_pago" value="efectivo"> Efectivo</label>
-            <label class="opcion"><input type="radio" name="nomina_pago" value="mixto"> Mixto</label>
-          </div>
-        </div>
-        <div class="btns">
-          <button type="button" class="btn btn-prev" onclick="anterior()">← Anterior</button>
-          <button type="button" class="btn btn-next" onclick="siguiente()">Siguiente →</button>
-        </div>
+    <div class="campo"><label>¿Declara ITBIS mensualmente?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="itbis" value="si"> Sí</label>
+        <label class="opt"><input type="radio" name="itbis" value="no"> No</label>
+        <label class="opt"><input type="radio" name="itbis" value="no_se"> No sé</label>
       </div>
     </div>
-
-    <!-- SEC 4 -->
-    <div class="seccion" data-sec="4">
-      <div class="sec-titulo">📊 4. Contabilidad actual</div>
-      <div class="sec-cuerpo">
-        <div class="campo"><label>¿Lleva contabilidad?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="contabilidad" value="externo"> Contador externo</label>
-            <label class="opcion"><input type="radio" name="contabilidad" value="interno"> Internamente</label>
-            <label class="opcion"><input type="radio" name="contabilidad" value="no"> No formalmente</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Qué software contable usa?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="software" value="quickbooks"> QuickBooks</label>
-            <label class="opcion"><input type="radio" name="software" value="excel"> Excel</label>
-            <label class="opcion"><input type="radio" name="software" value="sap"> SAP</label>
-            <label class="opcion"><input type="radio" name="software" value="otro"> Otro</label>
-            <label class="opcion"><input type="radio" name="software" value="ninguno"> Ninguno</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Tiene estados financieros del año anterior?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="estados" value="si"> Sí</label>
-            <label class="opcion"><input type="radio" name="estados" value="parcial"> Parcialmente</label>
-            <label class="opcion"><input type="radio" name="estados" value="no"> No</label>
-          </div>
-        </div>
-        <div class="campo"><label>Ingresos anuales aproximados</label>
-          <select name="ingresos">
-            <option value="">— Selecciona —</option>
-            <option value="menos500k">Menos de RD$500,000</option>
-            <option value="500k-3m">RD$500,001 – RD$3,000,000</option>
-            <option value="3m-10m">RD$3,000,001 – RD$10,000,000</option>
-            <option value="10m+">Más de RD$10,000,000</option>
-            <option value="ns">Prefiero no indicarlo</option>
-          </select>
-        </div>
-        <div class="btns">
-          <button type="button" class="btn btn-prev" onclick="anterior()">← Anterior</button>
-          <button type="button" class="btn btn-next" onclick="siguiente()">Siguiente →</button>
-        </div>
+    <div class="campo"><label>¿Qué comprobantes usa?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="comprobantes" value="ecf"> e-CF electrónico</label>
+        <label class="opt"><input type="radio" name="comprobantes" value="ncf"> NCF físico</label>
+        <label class="opt"><input type="radio" name="comprobantes" value="no"> No uso</label>
+        <label class="opt"><input type="radio" name="comprobantes" value="implementar"> Necesito implementarlo</label>
       </div>
     </div>
-
-    <!-- SEC 5 -->
-    <div class="seccion" data-sec="5">
-      <div class="sec-titulo">✅ 5. Necesidades y servicios</div>
-      <div class="sec-cuerpo">
-        <div class="campo"><label>¿Qué servicios le interesan?</label>
-          <div class="opciones">
-            <label class="opcion"><input type="checkbox" name="servicios" value="contabilidad"> Contabilidad mensual y estados financieros</label>
-            <label class="opcion"><input type="checkbox" name="servicios" value="itbis"> Declaración ITBIS (IT-1)</label>
-            <label class="opcion"><input type="checkbox" name="servicios" value="isr"> Declaración ISR anual</label>
-            <label class="opcion"><input type="checkbox" name="servicios" value="nomina"> Nómina y TSS</label>
-            <label class="opcion"><input type="checkbox" name="servicios" value="ecf"> Implementación e-CF</label>
-            <label class="opcion"><input type="checkbox" name="servicios" value="conciliacion"> Conciliación bancaria</label>
-            <label class="opcion"><input type="checkbox" name="servicios" value="fiscalizacion"> Representación ante DGII</label>
-            <label class="opcion"><input type="checkbox" name="servicios" value="planeacion"> Planeación fiscal</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Alguna situación urgente?</label>
-          <textarea name="urgente" placeholder="Ej: carta de la DGII, meses atrasados, empleados sin registrar..."></textarea>
-        </div>
-        <div class="btns">
-          <button type="button" class="btn btn-prev" onclick="anterior()">← Anterior</button>
-          <button type="button" class="btn btn-next" onclick="siguiente()">Siguiente →</button>
-        </div>
+    <div class="campo"><label>¿Ha recibido requerimientos de la DGII?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="req_dgii" value="si"> Sí</label>
+        <label class="opt"><input type="radio" name="req_dgii" value="no"> No</label>
       </div>
     </div>
-
-    <!-- SEC 6 -->
-    <div class="seccion" data-sec="6">
-      <div class="sec-titulo">💬 6. Preferencias</div>
-      <div class="sec-cuerpo">
-        <div class="campo"><label>¿Cómo prefiere comunicarse?</label>
-          <div class="opciones horizontal">
-            <label class="opcion"><input type="radio" name="comunicacion" value="whatsapp"> WhatsApp</label>
-            <label class="opcion"><input type="radio" name="comunicacion" value="correo"> Correo</label>
-            <label class="opcion"><input type="radio" name="comunicacion" value="presencial"> Presencial</label>
-          </div>
-        </div>
-        <div class="campo"><label>¿Cómo nos conoció?</label>
-          <select name="referido">
-            <option value="">— Selecciona —</option>
-            <option>Recomendación</option><option>Redes sociales</option><option>Google</option><option>Otro</option>
-          </select>
-        </div>
-        <div class="campo"><label>Comentarios adicionales</label>
-          <textarea name="comentarios" placeholder="Cualquier información adicional..."></textarea>
-        </div>
-        <div class="btns">
-          <button type="button" class="btn btn-prev" onclick="anterior()">← Anterior</button>
-          <button type="button" class="btn btn-enviar" onclick="enviar()">Enviar información ✓</button>
-        </div>
-      </div>
+    <div class="btns">
+      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button>
     </div>
-  </form>
-
-  <!-- LOADING -->
-  <div class="loading" id="loading">
-    <div class="spinner"></div>
-    <div class="loading-txt" id="loading-txt">Procesando su información...</div>
-    <div class="loading-sub">Un momento por favor</div>
   </div>
+</div>
 
-  <!-- CONFIRMACIÓN PARA EL CLIENTE -->
-  <div class="confirmacion" id="confirmacion">
-    <div class="conf-ico">✅</div>
-    <div class="conf-titulo">¡Información recibida!</div>
-    <div class="conf-desc">Gracias por completar el formulario. La Lcda. Raquel Andújar revisará su información y le contactará en las próximas <strong>24 a 48 horas</strong> con una propuesta personalizada para su negocio.</div>
-    <div class="conf-contacto">¿Tiene alguna pregunta urgente?<br><strong>📱 829-786-0922</strong> · WhatsApp disponible</div>
-  </div>
-
-  <!-- DIAGNÓSTICO INTERNO (solo visible para Raquel con contraseña) -->
-  <div class="diagnostico" id="diagnostico">
-    <div class="diag-banner">
-      <span>🔒 DIAGNÓSTICO INTERNO</span>
-      <small>— Solo para uso de la Lcda. Raquel Andújar, CPA —</small>
+<div class="sec" id="s3">
+  <div class="sec-tit">👥 3. Nómina y personal</div>
+  <div class="sec-body">
+    <div class="campo"><label>Número de empleados</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="empleados" value="0"> 0</label>
+        <label class="opt"><input type="radio" name="empleados" value="1-5"> 1 – 5</label>
+        <label class="opt"><input type="radio" name="empleados" value="6-15"> 6 – 15</label>
+        <label class="opt"><input type="radio" name="empleados" value="16+"> Más de 16</label>
+      </div>
     </div>
-    <div id="diag-contenido"></div>
-    <button class="btn-pdf" onclick="window.print()">📄 Imprimir / Guardar como PDF</button>
+    <div class="campo"><label>¿Empleados registrados en TSS?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="tss" value="si"> Sí</label>
+        <label class="opt"><input type="radio" name="tss" value="no"> No</label>
+        <label class="opt"><input type="radio" name="tss" value="parcial"> Parcialmente</label>
+      </div>
+    </div>
+    <div class="campo"><label>¿Cómo paga la nómina?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="nomina" value="transferencia"> Transferencia</label>
+        <label class="opt"><input type="radio" name="nomina" value="efectivo"> Efectivo</label>
+        <label class="opt"><input type="radio" name="nomina" value="mixto"> Mixto</label>
+      </div>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button>
+    </div>
   </div>
+</div>
 
+<div class="sec" id="s4">
+  <div class="sec-tit">📊 4. Contabilidad actual</div>
+  <div class="sec-body">
+    <div class="campo"><label>¿Lleva contabilidad?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="contabilidad" value="externo"> Contador externo</label>
+        <label class="opt"><input type="radio" name="contabilidad" value="interno"> Internamente</label>
+        <label class="opt"><input type="radio" name="contabilidad" value="no"> No formalmente</label>
+      </div>
+    </div>
+    <div class="campo"><label>¿Qué software usa?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="software" value="quickbooks"> QuickBooks</label>
+        <label class="opt"><input type="radio" name="software" value="alegra"> Alegra</label>
+        <label class="opt"><input type="radio" name="software" value="cashflow"> Cashflow</label>
+        <label class="opt"><input type="radio" name="software" value="excel"> Excel</label>
+        <label class="opt"><input type="radio" name="software" value="sap"> SAP</label>
+        <label class="opt"><input type="radio" name="software" value="ninguno"> Ninguno</label>
+      </div>
+    </div>
+    <div class="campo"><label>¿Tiene estados financieros del año anterior?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="estados" value="si"> Sí</label>
+        <label class="opt"><input type="radio" name="estados" value="parcial"> Parcialmente</label>
+        <label class="opt"><input type="radio" name="estados" value="no"> No</label>
+      </div>
+    </div>
+    <div class="campo"><label>Ingresos anuales aproximados</label>
+      <select name="ingresos">
+        <option value="">— Selecciona —</option>
+        <option value="menos500k">Menos de RD$500,000</option>
+        <option value="500k-3m">RD$500,001 – RD$3,000,000</option>
+        <option value="3m-10m">RD$3,000,001 – RD$10,000,000</option>
+        <option value="10m+">Más de RD$10,000,000</option>
+        <option value="ns">Prefiero no indicarlo</option>
+      </select>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s5">
+  <div class="sec-tit">✅ 5. Servicios de interés</div>
+  <div class="sec-body">
+    <div class="campo"><label>¿Qué servicios le interesan?</label>
+      <div class="opts" style="flex-direction:column">
+        <label class="opt"><input type="checkbox" name="svc" value="contabilidad"> Contabilidad mensual y estados financieros</label>
+        <label class="opt"><input type="checkbox" name="svc" value="itbis"> Declaración ITBIS (IT-1)</label>
+        <label class="opt"><input type="checkbox" name="svc" value="isr"> Declaración ISR anual</label>
+        <label class="opt"><input type="checkbox" name="svc" value="nomina"> Nómina y TSS</label>
+        <label class="opt"><input type="checkbox" name="svc" value="ecf"> Implementación e-CF</label>
+        <label class="opt"><input type="checkbox" name="svc" value="conciliacion"> Conciliación bancaria</label>
+        <label class="opt"><input type="checkbox" name="svc" value="fiscalizacion"> Representación ante DGII</label>
+        <label class="opt"><input type="checkbox" name="svc" value="planeacion"> Planeación fiscal</label>
+      </div>
+    </div>
+    <div class="campo"><label>¿Alguna situación urgente?</label>
+      <textarea name="urgente" placeholder="Ej: carta de la DGII, meses atrasados..."></textarea>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s6">
+  <div class="sec-tit">💬 6. Preferencias</div>
+  <div class="sec-body">
+    <div class="campo"><label>¿Cómo prefiere comunicarse?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="comunicacion" value="whatsapp"> WhatsApp</label>
+        <label class="opt"><input type="radio" name="comunicacion" value="correo"> Correo</label>
+        <label class="opt"><input type="radio" name="comunicacion" value="presencial"> Presencial</label>
+      </div>
+    </div>
+    <div class="campo"><label>¿Cómo nos conoció?</label>
+      <select name="referido">
+        <option value="">— Selecciona —</option>
+        <option>Recomendación</option><option>Redes sociales</option><option>Google</option><option>Otro</option>
+      </select>
+    </div>
+    <div class="campo"><label>Comentarios adicionales</label>
+      <textarea name="comentarios" placeholder="Cualquier información adicional..."></textarea>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn btn-e" onclick="enviar()">Enviar información ✓</button>
+    </div>
+  </div>
+</div>
+
+</form>
+
+<div class="load" id="load">
+  <div class="spin"></div>
+  <div style="font-size:13px;color:#4B5563">Procesando su información...</div>
+</div>
+
+<div class="conf" id="conf">
+  <div class="conf-ico">✅</div>
+  <div class="conf-tit">¡Información recibida!</div>
+  <div class="conf-desc">Gracias por completar el formulario. La Lcda. Raquel Andújar le contactará en las próximas <strong>24 a 48 horas</strong> con una propuesta personalizada.</div>
+  <div class="conf-tel">¿Tiene alguna pregunta urgente?<br><strong>📱 829-786-0922</strong> · WhatsApp disponible</div>
 </div>
 
 <script>
-let secActual = 1;
-const totalSecs = 6;
-// Contraseña para ver el diagnóstico (cámbiela por la suya)
-const PASS = "raquel2026";
+var sec = 1;
+var total = 6;
 
-function actualizar(){
-  document.querySelectorAll('.seccion').forEach(s=>s.classList.remove('activa'));
-  document.querySelector(`[data-sec="${secActual}"]`).classList.add('activa');
-  const pct = Math.round((secActual/totalSecs)*100);
-  document.getElementById('progreso').style.width=pct+'%';
-  document.getElementById('progreso-txt').textContent=`Sección ${secActual} de ${totalSecs}`;
-}
-function siguiente(){if(secActual<totalSecs){secActual++;actualizar();window.scrollTo(0,0);}}
-function anterior(){if(secActual>1){secActual--;actualizar();window.scrollTo(0,0);}}
-
-document.addEventListener('change',e=>{
-  if(e.target.type==='radio'){
-    document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(r=>r.closest('.opcion').classList.remove('seleccionada'));
-    e.target.closest('.opcion').classList.add('seleccionada');
+function actualizar() {
+  for (var i = 1; i <= total; i++) {
+    document.getElementById('s' + i).className = 'sec' + (i === sec ? ' activa' : '');
   }
-  if(e.target.type==='checkbox') e.target.closest('.opcion').classList.toggle('seleccionada',e.target.checked);
+  var pct = Math.round((sec / total) * 100);
+  document.getElementById('pfill').style.width = pct + '%';
+  document.getElementById('ptxt').textContent = 'Sección ' + sec + ' de ' + total;
+  window.scrollTo(0, 0);
+}
+
+function sig() {
+  if (sec < total) { sec++; actualizar(); }
+}
+
+function ant() {
+  if (sec > 1) { sec--; actualizar(); }
+}
+
+document.addEventListener('change', function(e) {
+  if (e.target.type === 'radio') {
+    var grupo = document.querySelectorAll('input[name="' + e.target.name + '"]');
+    for (var i = 0; i < grupo.length; i++) {
+      grupo[i].closest('.opt').className = 'opt';
+    }
+    e.target.closest('.opt').className = 'opt sel';
+  }
+  if (e.target.type === 'checkbox') {
+    e.target.closest('.opt').className = e.target.checked ? 'opt sel' : 'opt';
+  }
 });
 
-function getDatos(){
-  const fd=new FormData(document.getElementById('form'));
-  const d={};
-  for(let[k,v]of fd.entries()){
-    if(d[k]){d[k]=Array.isArray(d[k])?[...d[k],v]:[d[k],v];}
-    else{d[k]=v;}
-  }
+function getDatos() {
+  var fd = new FormData(document.getElementById('frm'));
+  var d = {};
+  fd.forEach(function(v, k) {
+    if (d[k]) {
+      d[k] = Array.isArray(d[k]) ? d[k].concat(v) : [d[k], v];
+    } else {
+      d[k] = v;
+    }
+  });
   return d;
 }
 
-async function enviar(){
-  document.getElementById('form').style.display='none';
-  document.getElementById('progreso-wrap').style.display='none';
-  document.getElementById('loading').classList.add('visible');
+function enviar() {
+  document.getElementById('frm').style.display = 'none';
+  document.getElementById('prog-wrap').style.display = 'none';
+  document.getElementById('load').className = 'load vis';
 
-  // Enviar datos a Formspree
-  const d = getDatos();
-  try {
-    await fetch('https://formspree.io/f/xnjrkaby', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-      body: JSON.stringify({
-        empresa: d.razon_social||'N/D',
-        rnc: d.rnc||'N/D',
-        contacto: d.contacto||'N/D',
-        telefono: d.telefono||'N/D',
-        correo: d.correo||'N/D',
-        entidad: d.entidad||'N/D',
-        sector: d.sector||'N/D',
-        dgii_corriente: d.dgii_corriente||'N/D',
-        itbis: d.itbis||'N/D',
-        comprobantes: d.comprobantes||'N/D',
-        requerimiento: d.requerimiento||'N/D',
-        empleados: d.empleados||'N/D',
-        tss: d.tss||'N/D',
-        nomina_pago: d.nomina_pago||'N/D',
-        contabilidad: d.contabilidad||'N/D',
-        software: d.software||'N/D',
-        estados: d.estados||'N/D',
-        ingresos: d.ingresos||'N/D',
-        servicios: Array.isArray(d.servicios)?d.servicios.join(', '):(d.servicios||'N/D'),
-        urgente: d.urgente||'Ninguno',
-        comunicacion: d.comunicacion||'N/D',
-        referido: d.referido||'N/D',
-        comentarios: d.comentarios||'N/D'
-      })
-    });
-  } catch(e) {
-    console.log('Formspree error:', e);
-  }
+  var d = getDatos();
 
-  const d=getDatos();
-
-  try{
-    const prompt=`Eres la Lcda. Raquel Andújar, CPA. Analiza los datos de este cliente y genera un diagnóstico interno SOLO en HTML usando las clases CSS del sistema.
-
-DATOS:
-- Empresa: ${d.razon_social||'N/D'} | RNC: ${d.rnc||'N/D'}
-- Sector: ${d.sector||'N/D'} | Entidad: ${d.entidad||'N/D'}
-- RNC activo: ${d.rnc_activo||'N/D'}
-- DGII al corriente: ${d.dgii_corriente||'N/D'}
-- ITBIS: ${d.itbis||'N/D'}
-- Comprobantes: ${d.comprobantes||'N/D'}
-- Requerimiento DGII: ${d.requerimiento||'N/D'}
-- Empleados: ${d.empleados||'N/D'}
-- TSS: ${d.tss||'N/D'}
-- Pago nómina: ${d.nomina_pago||'N/D'}
-- Contabilidad: ${d.contabilidad||'N/D'}
-- Software: ${d.software||'N/D'}
-- Estados financieros: ${d.estados||'N/D'}
-- Ingresos: ${d.ingresos||'N/D'}
-- Servicios de interés: ${Array.isArray(d.servicios)?d.servicios.join(', '):(d.servicios||'N/D')}
-- Urgente: ${d.urgente||'Ninguno'}
-
-PAQUETES DISPONIBLES (el mínimo es RD$8,500/mes):
-1. "Cumplimiento y Control" — RD$8,500/mes — Para personas físicas y micro-empresas sin empleados. Incluye: ITBIS, ISR, 606/607, NCF/e-CF.
-2. "Crecimiento Seguro" — RD$8,500/mes — Para S.R.L. con empleados activos. Incluye todo lo anterior + nómina, TSS, conciliación bancaria, estados financieros mensuales.
-3. "Dirección Financiera Externa" — RD$8,500/mes base (cotizar según volumen) — Para empresas medianas, call centers, grupos empresariales. Incluye todo + planeación fiscal, representación DGII, control inventarios, reportes ejecutivos.
-
-SISTEMAS DISPONIBLES: QuickBooks, Excel, SAP, Softland, Alegra, Cashflow, Macola, Newsoft.
-
-Genera el HTML con estas secciones:
-
-1. NIVEL DE RIESGO: <div class="riesgo-box alto|medio|bajo"><div class="riesgo-ico">🔴|🟡|🟢</div><div><div class="riesgo-titulo">NIVEL: ALTO|MEDIO|BAJO</div><div class="riesgo-desc">explicación concreta</div></div></div>
-
-2. DIAGNÓSTICO: <div class="diag-card"><div class="diag-card-hdr">🔍 DIAGNÓSTICO POR ÁREA</div><div class="diag-card-body"><table class="dtable"><tr><th>Área</th><th>Situación</th><th>Estado</th><th>Acción</th></tr>...usa tag-r tag-a tag-v</table></div></div>
-
-3. PAQUETE RECOMENDADO: <div class="diag-card"><div class="diag-card-hdr">📦 PAQUETE RECOMENDADO</div><div class="diag-card-body"><div class="paquete-rec"><div class="pkg-nombre">Nombre</div><div class="pkg-precio">RD$ 8,500/mes</div><div class="pkg-porque">Explica POR QUÉ este paquete específicamente para este cliente, qué problemas resuelve</div><div class="pkg-incluye"><div class="pkg-feat">servicio 1</div>...</div></div></div></div>
-
-4. SISTEMA RECOMENDADO: <div class="diag-card"><div class="diag-card-hdr">💻 SISTEMA CONTABLE RECOMENDADO</div><div class="diag-card-body"><div class="sistema-grid"><div class="sist-item recomendado"><div class="sist-badge">⭐ RECOMENDADO</div><div class="sist-nombre">Sistema</div><div class="sist-desc">Por qué este sistema es el mejor para este cliente</div></div>... agrega 2-3 alternativas sin la clase recomendado</div></div></div>
-
-5. QUÉ HAY QUE HACERSE: <div class="diag-card"><div class="diag-card-hdr">⚡ QUÉ HAY QUE HACERSE</div><div class="diag-card-body"><div class="hacerse-list"><div class="hacerse-item urgente|normal"><div class="h-ico">emoji</div><div><div class="h-titulo">título</div><div class="h-desc">descripción</div></div></div>...</div></div></div>
-
-6. PLAN EN FASES: <div class="diag-card"><div class="diag-card-hdr">📋 PLAN DE TRABAJO</div><div class="diag-card-body"><div class="fases"><div class="fase"><div class="fase-hdr"><div class="fase-num">1</div><div class="fase-tit">título</div><div class="fase-tiempo">Semana X</div></div><div class="fase-items"><div class="fase-item">acción</div>...</div></div>...</div></div></div>
-
-7. PROPUESTA: <div class="diag-card"><div class="diag-card-hdr">💰 PROPUESTA ECONÓMICA</div><div class="diag-card-body"><div class="prop-grid"><div class="prop-item prop-n"><div class="prop-label">Diagnóstico</div><div class="prop-monto">GRATIS</div><div class="prop-det">Sin costo</div></div><div class="prop-item prop-n"><div class="prop-label">Regularización/mes</div><div class="prop-monto">RD$ 3,500</div><div class="prop-det">Por mes atrasado</div></div><div class="prop-item prop-d"><div class="prop-label">Iguala mensual</div><div class="prop-monto">RD$ 8,500</div><div class="prop-det">Todos los servicios</div></div><div class="prop-item prop-n"><div class="prop-label">Cuotas disponibles</div><div class="prop-monto" style="font-size:14px">2–3 cuotas</div><div class="prop-det">Para regularización</div></div></div></div></div>
-
-Responde SOLO con el HTML, sin explicaciones ni markdown.`;
-
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
-    });
-    const data=await res.json();
-    clearInterval(0);
-    mostrarResultados(data.content[0].text, d);
-  }catch(e){
-    mostrarResultados(null, d);
-  }
-}
-
-function mostrarResultados(html, d){
-  document.getElementById('loading').classList.remove('visible');
-
-  // El cliente ve solo la confirmación
-  document.getElementById('confirmacion').classList.add('visible');
-
-  // Guardar datos para diagnóstico
-  window._diagData = {html, d};
-
-  // Mostrar botón para acceder al diagnóstico (solo Raquel)
-  setTimeout(()=>{
-    const btn = document.createElement('button');
-    btn.className = 'btn-pdf';
-    btn.style.marginTop = '12px';
-    btn.style.background = '#0B2545';
-    btn.textContent = '🔒 Acceder al diagnóstico interno';
-    btn.onclick = pedirContrasena;
-    document.getElementById('confirmacion').appendChild(btn);
-  }, 500);
-}
-
-function pedirContrasena(){
-  const pass = prompt('Ingrese su contraseña de acceso:');
-  if(pass === PASS){
-    const {html, d} = window._diagData;
-    if(html){
-      document.getElementById('diag-contenido').innerHTML = html;
-    } else {
-      document.getElementById('diag-contenido').innerHTML = generarFallback(d);
-    }
-    document.getElementById('diagnostico').classList.add('visible');
-    document.getElementById('diagnostico').scrollIntoView({behavior:'smooth'});
-  } else {
-    alert('Contraseña incorrecta.');
-  }
-}
-
-function generarFallback(d){
-  const pts = (d.dgii_corriente!=='si'?2:0)+(d.tss==='no'?2:0)+(d.comprobantes==='ncf'||d.comprobantes==='no'?1:0)+(d.contabilidad==='no'?1:0)+(d.requerimiento==='si'?2:0);
-  const r = pts>=4?{c:'alto',i:'🔴',n:'ALTO',t:'Múltiples incumplimientos identificados. Requiere atención inmediata.'}:pts>=2?{c:'medio',i:'🟡',n:'MEDIO',t:'Algunas áreas requieren organización urgente.'}:{c:'bajo',i:'🟢',n:'BAJO',t:'Base sólida. Enfoque en mantenimiento y optimización.'};
-  const pkg = d.empleados==='0'?'Cumplimiento y Control': d.ingresos==='10m+'||d.sector==='Call Center / BPO'?'Dirección Financiera Externa':'Crecimiento Seguro';
-  const sist = d.ingresos==='menos500k'?'Alegra': d.ingresos==='10m+'?'SAP': d.sector==='Call Center / BPO'?'Softland':'QuickBooks Online';
-  const sistAlt1 = sist==='Alegra'?'Cashflow':'Alegra';
-  const sistAlt2 = sist==='QuickBooks Online'?'Cashflow':'QuickBooks Online';
-
-  return `
-  <div class="riesgo-box ${r.c}"><div class="riesgo-ico">${r.i}</div><div><div class="riesgo-titulo">NIVEL DE RIESGO: ${r.n}</div><div class="riesgo-desc">${r.t}</div></div></div>
-  <div class="diag-card"><div class="diag-card-hdr">📦 PAQUETE RECOMENDADO</div><div class="diag-card-body"><div class="paquete-rec"><div class="pkg-nombre">${pkg}</div><div class="pkg-precio">RD$ 8,500/mes</div><div class="pkg-porque">Basado en el tamaño del negocio (${d.empleados||'N/D'} empleados), el sector (${d.sector||'N/D'}) y su situación actual con la DGII y TSS. Este paquete cubre todas las obligaciones identificadas.</div><div class="pkg-incluye"><div class="pkg-feat">Contabilidad mensual y estados financieros</div><div class="pkg-feat">Declaración ITBIS y pagos a cuenta ISR</div><div class="pkg-feat">Reportes 606 y 607 mensuales</div>${d.empleados!=='0'?'<div class="pkg-feat">Nómina y TSS mensual</div>':''}<div class="pkg-feat">Gestión de comprobantes e-CF</div></div></div></div></div>
-  <div class="diag-card"><div class="diag-card-hdr">💻 SISTEMA RECOMENDADO</div><div class="diag-card-body"><div class="sistema-grid"><div class="sist-item recomendado"><div class="sist-badge">⭐ RECOMENDADO</div><div class="sist-nombre">${sist}</div><div class="sist-desc">Ideal para el volumen y sector de este cliente. Compatible con DGII.</div></div><div class="sist-item"><div class="sist-nombre">${sistAlt1}</div><div class="sist-desc">Buena alternativa, fácil de usar para negocios pequeños.</div></div><div class="sist-item"><div class="sist-nombre">${sistAlt2}</div><div class="sist-desc">Opción adicional según preferencia del cliente.</div></div></div></div></div>
-  <div class="diag-card"><div class="diag-card-hdr">⚡ QUÉ HAY QUE HACERSE</div><div class="diag-card-body"><div class="hacerse-list">
-    ${d.dgii_corriente!=='si'?'<div class="hacerse-item urgente"><div class="h-ico">🔴</div><div><div class="h-titulo">Verificar estatus DGII</div><div class="h-desc">Revisar deudas y meses atrasados en Oficina Virtual.</div></div></div>':''}
-    ${d.tss==='no'?'<div class="hacerse-item urgente"><div class="h-ico">🔴</div><div><div class="h-titulo">Registrar empleados en TSS</div><div class="h-desc">Riesgo laboral activo. Regularizar de inmediato.</div></div></div>':''}
-    ${d.comprobantes==='ncf'?'<div class="hacerse-item urgente"><div class="h-ico">🔴</div><div><div class="h-titulo">Migrar a e-CF</div><div class="h-desc">NCF físicos ya no son válidos según normativa DGII.</div></div></div>':''}
-    ${d.contabilidad==='no'?'<div class="hacerse-item normal"><div class="h-ico">📊</div><div><div class="h-titulo">Implementar contabilidad formal</div><div class="h-desc">Organizar registros contables desde el inicio.</div></div></div>':''}
-    <div class="hacerse-item normal"><div class="h-ico">📄</div><div><div class="h-titulo">Firmar contrato de servicios</div><div class="h-desc">Formalizar la relación antes de iniciar trabajos.</div></div></div>
-  </div></div></div>
-  <div class="diag-card"><div class="diag-card-hdr">💰 PROPUESTA ECONÓMICA</div><div class="diag-card-body"><div class="prop-grid">
-    <div class="prop-item prop-n"><div class="prop-label">Diagnóstico inicial</div><div class="prop-monto">GRATIS</div><div class="prop-det">Sin costo</div></div>
-    <div class="prop-item prop-n"><div class="prop-label">Regularización / mes</div><div class="prop-monto">RD$ 3,500</div><div class="prop-det">Por cada mes atrasado</div></div>
-    <div class="prop-item prop-d"><div class="prop-label">Iguala mensual</div><div class="prop-monto">RD$ 8,500</div><div class="prop-det">Todos los servicios incluidos</div></div>
-    <div class="prop-item prop-n"><div class="prop-label">Opción cuotas</div><div class="prop-monto" style="font-size:14px">2–3 cuotas</div><div class="prop-det">Para la regularización</div></div>
-  </div></div></div>`;
+  fetch('https://formspree.io/f/xnjrkaby', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      empresa: d.empresa || 'N/D',
+      rnc: d.rnc || 'N/D',
+      contacto: d.contacto || 'N/D',
+      telefono: d.telefono || 'N/D',
+      correo: d.correo || 'N/D',
+      entidad: d.entidad || 'N/D',
+      sector: d.sector || 'N/D',
+      rnc_activo: d.rnc_activo || 'N/D',
+      dgii: d.dgii || 'N/D',
+      itbis: d.itbis || 'N/D',
+      comprobantes: d.comprobantes || 'N/D',
+      req_dgii: d.req_dgii || 'N/D',
+      empleados: d.empleados || 'N/D',
+      tss: d.tss || 'N/D',
+      nomina: d.nomina || 'N/D',
+      contabilidad: d.contabilidad || 'N/D',
+      software: d.software || 'N/D',
+      estados: d.estados || 'N/D',
+      ingresos: d.ingresos || 'N/D',
+      servicios: Array.isArray(d.svc) ? d.svc.join(', ') : (d.svc || 'N/D'),
+      urgente: d.urgente || 'Ninguno',
+      comunicacion: d.comunicacion || 'N/D',
+      referido: d.referido || 'N/D',
+      comentarios: d.comentarios || 'N/D'
+    })
+  }).then(function() {
+    document.getElementById('load').className = 'load';
+    document.getElementById('conf').className = 'conf vis';
+  }).catch(function() {
+    document.getElementById('load').className = 'load';
+    document.getElementById('conf').className = 'conf vis';
+  });
 }
 </script>
 </body>
