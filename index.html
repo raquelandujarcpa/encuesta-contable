@@ -7,126 +7,170 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F4F6F9;color:#1E2535;min-height:100vh}
-.wrap{max-width:680px;margin:0 auto;padding:24px 16px}
-.header{background:#1A3A5C;border-radius:14px;padding:20px 24px;margin-bottom:24px}
-.header-inner{display:flex;align-items:center;gap:18px}
-.header-circle{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#B8913A,#D4A84B);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fff;flex-shrink:0}
-.header-cred{font-size:10px;color:#C9973F;letter-spacing:.12em;font-weight:700;text-transform:uppercase;margin-bottom:5px}
-.header-name{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:4px}
-.header-sub{font-size:11.5px;color:rgba(176,200,232,.65)}
-.progreso-bar{background:#E8EEF7;border-radius:999px;height:6px;margin-bottom:6px}
-.progreso-fill{background:linear-gradient(90deg,#0B2545,#C9973F);height:6px;border-radius:999px;transition:width .4s}
-.progreso-txt{font-size:11px;color:#6B7280;text-align:right;margin-bottom:16px}
-.sec{display:none}
-.sec.activa{display:block}
-.sec-tit{background:#0B2545;color:#fff;padding:10px 16px;border-radius:10px 10px 0 0;font-size:13px;font-weight:700}
-.sec-body{background:#fff;border:2px solid #64748B;border-top:none;border-radius:0 0 10px 10px;padding:20px}
-.campo{margin-bottom:16px}
-.campo label{display:block;font-size:13px;font-weight:700;color:#0B2545;margin-bottom:6px}
+.wrap{max-width:700px;margin:0 auto;padding:24px 16px}
+.hdr{background:#1A3A5C;border-radius:14px;padding:20px 24px;margin-bottom:24px;display:flex;align-items:center;gap:18px}
+.hdr-c{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#B8913A,#D4A84B);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fff;flex-shrink:0}
+.hdr-cr{font-size:10px;color:#C9973F;letter-spacing:.12em;font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.hdr-nm{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:4px}
+.hdr-sb{font-size:11.5px;color:rgba(176,200,232,.65)}
+.pb{background:#E8EEF7;border-radius:999px;height:6px;margin-bottom:6px}
+.pf{background:linear-gradient(90deg,#0B2545,#C9973F);height:6px;border-radius:999px;transition:width .4s}
+.pt{font-size:11px;color:#6B7280;text-align:right;margin-bottom:16px}
+.sec{display:none}.sec.on{display:block}
+.st{background:#0B2545;color:#fff;padding:10px 16px;border-radius:10px 10px 0 0;font-size:13px;font-weight:700}
+.sb{background:#fff;border:2px solid #64748B;border-top:none;border-radius:0 0 10px 10px;padding:20px}
+.f{margin-bottom:16px}
+.f label{display:block;font-size:13px;font-weight:700;color:#0B2545;margin-bottom:6px}
 .req{color:#C9973F}
-.campo input,.campo select,.campo textarea{width:100%;padding:10px 12px;border:2px solid #64748B;border-radius:8px;font-size:13px;color:#0B2545;background:#fff;font-family:inherit}
-.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:#0B2545}
-.campo textarea{min-height:70px;resize:vertical}
-.dos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:500px){.dos{grid-template-columns:1fr}}
+.f input,.f select,.f textarea{width:100%;padding:10px 12px;border:2px solid #64748B;border-radius:8px;font-size:13px;color:#0B2545;background:#fff;font-family:inherit}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:#0B2545}
+.f textarea{min-height:70px;resize:vertical}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:500px){.g2,.g3{grid-template-columns:1fr}}
 .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .opt{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #64748B;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:13px;color:#1E2535;font-weight:500;transition:all .2s}
 .opt:hover{border-color:#C9973F;background:#FDF0D5}
 .opt.sel{border-color:#0B2545;background:#E8EEF7;font-weight:600}
 .opt input{width:15px;height:15px;accent-color:#0B2545;flex-shrink:0}
-.btns{display:flex;justify-content:space-between;margin-top:20px}
+.btns{display:flex;justify-content:space-between;margin-top:20px;gap:10px}
 .btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
-.btn-p{background:#F4F6F9;color:#0B2545;border:2px solid #64748B}
-.btn-n{background:#0B2545;color:#fff;margin-left:auto}
-.btn-e{background:linear-gradient(135deg,#C9973F,#A07828);color:#fff}
+.bp{background:#F4F6F9;color:#0B2545;border:2px solid #64748B}
+.bn{background:#0B2545;color:#fff;margin-left:auto}
+.be{background:linear-gradient(135deg,#C9973F,#A07828);color:#fff}
+
+/* CONFIRMACION CLIENTE */
 .conf{display:none;background:#fff;border-radius:14px;border:1px solid #E8EEF7;padding:40px 24px;text-align:center}
-.conf.vis{display:block}
-.conf-ico{font-size:48px;margin-bottom:16px}
-.conf-tit{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#0B2545;margin-bottom:10px}
-.conf-desc{font-size:14px;color:#4B5563;line-height:1.7;margin-bottom:20px}
-.conf-tel{background:#F4F6F9;border-radius:10px;padding:14px;font-size:13px;color:#0B2545}
-.load{display:none;text-align:center;padding:40px;background:#fff;border-radius:14px}
-.load.vis{display:block}
-.spin{width:44px;height:44px;border:4px solid #E8EEF7;border-top-color:#0B2545;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px}
-@keyframes spin{to{transform:rotate(360deg)}}
+.conf.on{display:block}
+
+/* LOADING */
+.load{display:none;text-align:center;padding:40px;background:#fff;border-radius:14px;border:1px solid #E8EEF7}
+.load.on{display:block}
+.spin{width:44px;height:44px;border:4px solid #E8EEF7;border-top-color:#0B2545;border-radius:50%;animation:sp 1s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* MODAL CONTRASEÑA */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center}
+.modal.on{display:flex}
+.modal-box{background:#fff;border-radius:16px;padding:32px;width:320px;text-align:center}
+
+/* DIAGNÓSTICO */
+.diag{display:none}.diag.on{display:block}
+.diag-banner{background:#C9973F;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.dsec{margin-bottom:16px}
+.dsec-h{background:#0B2545;color:#fff;padding:7px 14px;border-radius:6px 6px 0 0;font-size:11px;font-weight:700}
+.dsec-b{border:1px solid #E8EEF7;border-top:none;border-radius:0 0 8px 8px;padding:14px;background:#fff}
+.tag{border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700}
+.tag-r{background:#FEE2E2;color:#991B1B}
+.tag-a{background:#FEF9C3;color:#854D0E}
+.tag-v{background:#DCFCE7;color:#166534}
+.dtable{width:100%;border-collapse:collapse;font-size:11px}
+.dtable th{background:#F4F6F9;padding:6px 8px;border:1px solid #E8EEF7;font-size:10px;font-weight:700;color:#0B2545;text-align:left}
+.dtable td{padding:6px 8px;border:1px solid #E8EEF7;vertical-align:middle;color:#1E2535}
+.dtable tr:nth-child(even) td{background:#FAFBFC}
+.pkg-box{background:#FDF0D5;border:2px solid #C9973F;border-radius:10px;padding:16px}
+.fase{border:1px solid #E8EEF7;border-radius:8px;overflow:hidden;margin-bottom:8px}
+.fase-h{background:#F4F6F9;padding:7px 12px;display:flex;align-items:center;gap:8px}
+.fase-n{background:#0B2545;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.fase-t{font-size:12px;font-weight:700;color:#0B2545;flex:1}
+.fase-ti{font-size:10px;color:#C9973F;font-weight:600}
+.fase-b{padding:8px 12px}
+.fi{font-size:11px;color:#1E2535;padding:2px 0;font-weight:500}
+.fi::before{content:'→ ';color:#C9973F;font-weight:700}
+.hi{display:flex;align-items:flex-start;gap:10px;border-radius:8px;padding:10px 12px;margin-bottom:6px}
+.hi.urg{background:#FEE2E2;border:1.5px solid #F87171}
+.hi.nor{background:#F4F6F9;border:1.5px solid #CBD5E1}
+.prop-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pi{border-radius:8px;padding:12px;text-align:center}
+.pi.n{background:#F4F6F9;border:1px solid #E8EEF7}
+.pi.d{background:#0B2545;border:1px solid #0B2545}
+.pi-l{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.pi.n .pi-l{color:#6B7280}.pi.d .pi-l{color:rgba(176,200,232,.7)}
+.pi-m{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#C9973F}
+.pi-d{font-size:10px;margin-top:2px}
+.pi.n .pi-d{color:#6B7280}.pi.d .pi-d{color:rgba(176,200,232,.6)}
+.precio-total{background:#0B2545;border-radius:10px;padding:16px;text-align:center;margin-top:12px}
+.btn-pdf{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#C9973F,#A07828);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:16px;font-family:inherit}
+
+/* CONTRATO */
+.contrato{font-size:12px;line-height:1.85;color:#1E2535}
+.firma-g{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
+.firma-l{border-bottom:2px solid #0B2545;height:48px;margin-bottom:6px}
+@media print{body{background:#fff}.wrap{max-width:100%}.diag-banner,.modal{display:none!important}@page{margin:1.2cm;size:A4}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<div class="header">
-  <div class="header-inner">
-    <div class="header-circle">RA</div>
-    <div>
-      <div class="header-cred">Contadora Pública Autorizada</div>
-      <div class="header-name">Lcda. Raquel Ma. Andújar, CPA</div>
-      <div class="header-sub">Levantamiento inicial — Servicios contables · República Dominicana</div>
-    </div>
+<div class="hdr">
+  <div class="hdr-c">RA</div>
+  <div>
+    <div class="hdr-cr">Contadora Pública Autorizada</div>
+    <div class="hdr-nm">Lcda. Raquel Ma. Andújar, CPA</div>
+    <div class="hdr-sb">Levantamiento inicial — Servicios contables · República Dominicana</div>
   </div>
 </div>
 
-<div id="prog-wrap">
-  <div class="progreso-bar"><div class="progreso-fill" id="pfill" style="width:17%"></div></div>
-  <div class="progreso-txt" id="ptxt">Sección 1 de 6</div>
+<div id="pw" style="margin-bottom:16px">
+  <div class="pb"><div class="pf" id="pf" style="width:17%"></div></div>
+  <div class="pt" id="pt">Sección 1 de 6</div>
 </div>
 
 <form id="frm">
 
-<div class="sec activa" id="s1">
-  <div class="sec-tit">📋 1. Datos generales</div>
-  <div class="sec-body">
-    <div class="dos">
-      <div class="campo"><label>Razón social <span class="req">*</span></label><input name="empresa" required></div>
-      <div class="campo"><label>RNC / Cédula <span class="req">*</span></label><input name="rnc" required></div>
-    </div>
-    <div class="dos">
-      <div class="campo"><label>Contacto principal <span class="req">*</span></label><input name="contacto" required></div>
-      <div class="campo"><label>Teléfono / WhatsApp</label><input name="telefono"></div>
-    </div>
-    <div class="dos">
-      <div class="campo"><label>Correo electrónico</label><input type="email" name="correo"></div>
-      <div class="campo"><label>Tipo de entidad</label>
+<div class="sec on" id="s1">
+  <div class="st">📋 1. Datos generales</div>
+  <div class="sb">
+    <div class="g2">
+      <div class="f"><label>Razón social <span class="req">*</span></label><input name="empresa" required></div>
+      <div class="f"><label>RNC / Cédula <span class="req">*</span></label><input name="rnc" required></div>
+      <div class="f"><label>Contacto principal <span class="req">*</span></label><input name="contacto" required></div>
+      <div class="f"><label>Teléfono / WhatsApp</label><input name="telefono"></div>
+      <div class="f"><label>Correo electrónico</label><input type="email" name="correo"></div>
+      <div class="f"><label>Tipo de entidad</label>
         <select name="entidad">
           <option value="">— Selecciona —</option>
           <option>S.R.L.</option><option>S.A.</option><option>Persona Física con Negocio</option><option>EIRL</option><option>Otro</option>
         </select>
       </div>
     </div>
-    <div class="campo"><label>Sector / Giro <span class="req">*</span></label>
+    <div class="f"><label>Sector / Giro <span class="req">*</span></label>
       <select name="sector" required>
         <option value="">— Selecciona —</option>
-        <option>Comercio</option><option>Restaurante / Bar / Alimentos</option><option>Distribuidora</option><option>Ferretería</option><option>Call Center / BPO</option><option>Construcción</option><option>Servicios profesionales</option><option>Manufactura</option><option>Salud</option><option>Transporte</option><option>Otro</option>
+        <option>Comercio</option><option>Restaurante / Bar / Alimentos</option><option>Distribuidora</option><option>Ferretería</option>
+        <option>Call Center / BPO</option><option>Construcción</option><option>Servicios profesionales</option>
+        <option>Manufactura</option><option>Salud</option><option>Transporte</option><option>Otro</option>
       </select>
     </div>
-    <div class="btns"><button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button></div>
+    <div class="btns"><button type="button" class="btn bn" onclick="sig()">Siguiente →</button></div>
   </div>
 </div>
 
 <div class="sec" id="s2">
-  <div class="sec-tit">🏛️ 2. Situación tributaria (DGII)</div>
-  <div class="sec-body">
-    <div class="campo"><label>¿Tiene RNC activo? <span class="req">*</span></label>
+  <div class="st">🏛️ 2. Situación tributaria</div>
+  <div class="sb">
+    <div class="f"><label>¿Tiene RNC activo?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="rnc_activo" value="si"> Sí</label>
         <label class="opt"><input type="radio" name="rnc_activo" value="proceso"> En proceso</label>
         <label class="opt"><input type="radio" name="rnc_activo" value="no"> No</label>
       </div>
     </div>
-    <div class="campo"><label>¿Está al corriente con la DGII?</label>
+    <div class="f"><label>¿Está al corriente con la DGII?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="dgii" value="si"> Sí, al día</label>
         <label class="opt"><input type="radio" name="dgii" value="adeudos"> Con adeudos</label>
         <label class="opt"><input type="radio" name="dgii" value="no_se"> No lo sé</label>
       </div>
     </div>
-    <div class="campo"><label>¿Declara ITBIS mensualmente?</label>
+    <div class="f"><label>¿Declara ITBIS mensualmente?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="itbis" value="si"> Sí</label>
         <label class="opt"><input type="radio" name="itbis" value="no"> No</label>
         <label class="opt"><input type="radio" name="itbis" value="no_se"> No sé</label>
       </div>
     </div>
-    <div class="campo"><label>¿Qué comprobantes usa?</label>
+    <div class="f"><label>¿Qué comprobantes usa?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="comprobantes" value="ecf"> e-CF electrónico</label>
         <label class="opt"><input type="radio" name="comprobantes" value="ncf"> NCF físico</label>
@@ -134,23 +178,26 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#F4F6F9;color:#1E2535;mi
         <label class="opt"><input type="radio" name="comprobantes" value="implementar"> Necesito implementarlo</label>
       </div>
     </div>
-    <div class="campo"><label>¿Ha recibido requerimientos de la DGII?</label>
+    <div class="f"><label>¿Ha recibido requerimientos de la DGII?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="req_dgii" value="si"> Sí</label>
         <label class="opt"><input type="radio" name="req_dgii" value="no"> No</label>
       </div>
     </div>
+    <div class="f"><label>¿Cuántos meses tiene sin declarar? (aproximado)</label>
+      <input type="number" name="meses" value="0" min="0">
+    </div>
     <div class="btns">
-      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
-      <button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button>
+      <button type="button" class="btn bp" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn bn" onclick="sig()">Siguiente →</button>
     </div>
   </div>
 </div>
 
 <div class="sec" id="s3">
-  <div class="sec-tit">👥 3. Nómina y personal</div>
-  <div class="sec-body">
-    <div class="campo"><label>Número de empleados</label>
+  <div class="st">👥 3. Nómina y personal</div>
+  <div class="sb">
+    <div class="f"><label>Número de empleados</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="empleados" value="0"> 0</label>
         <label class="opt"><input type="radio" name="empleados" value="1-5"> 1 – 5</label>
@@ -158,14 +205,14 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#F4F6F9;color:#1E2535;mi
         <label class="opt"><input type="radio" name="empleados" value="16+"> Más de 16</label>
       </div>
     </div>
-    <div class="campo"><label>¿Empleados registrados en TSS?</label>
+    <div class="f"><label>¿Empleados registrados en TSS?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="tss" value="si"> Sí</label>
         <label class="opt"><input type="radio" name="tss" value="no"> No</label>
         <label class="opt"><input type="radio" name="tss" value="parcial"> Parcialmente</label>
       </div>
     </div>
-    <div class="campo"><label>¿Cómo paga la nómina?</label>
+    <div class="f"><label>¿Cómo paga la nómina?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="nomina" value="transferencia"> Transferencia</label>
         <label class="opt"><input type="radio" name="nomina" value="efectivo"> Efectivo</label>
@@ -173,23 +220,23 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#F4F6F9;color:#1E2535;mi
       </div>
     </div>
     <div class="btns">
-      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
-      <button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button>
+      <button type="button" class="btn bp" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn bn" onclick="sig()">Siguiente →</button>
     </div>
   </div>
 </div>
 
 <div class="sec" id="s4">
-  <div class="sec-tit">📊 4. Contabilidad actual</div>
-  <div class="sec-body">
-    <div class="campo"><label>¿Lleva contabilidad?</label>
+  <div class="st">📊 4. Contabilidad actual</div>
+  <div class="sb">
+    <div class="f"><label>¿Lleva contabilidad?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="contabilidad" value="externo"> Contador externo</label>
         <label class="opt"><input type="radio" name="contabilidad" value="interno"> Internamente</label>
         <label class="opt"><input type="radio" name="contabilidad" value="no"> No formalmente</label>
       </div>
     </div>
-    <div class="campo"><label>¿Qué software usa?</label>
+    <div class="f"><label>¿Qué software usa?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="software" value="quickbooks"> QuickBooks</label>
         <label class="opt"><input type="radio" name="software" value="alegra"> Alegra</label>
@@ -199,34 +246,33 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#F4F6F9;color:#1E2535;mi
         <label class="opt"><input type="radio" name="software" value="ninguno"> Ninguno</label>
       </div>
     </div>
-    <div class="campo"><label>¿Tiene estados financieros del año anterior?</label>
+    <div class="f"><label>¿Tiene estados financieros del año anterior?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="estados" value="si"> Sí</label>
         <label class="opt"><input type="radio" name="estados" value="parcial"> Parcialmente</label>
         <label class="opt"><input type="radio" name="estados" value="no"> No</label>
       </div>
     </div>
-    <div class="campo"><label>Ingresos anuales aproximados</label>
+    <div class="f"><label>Ingresos anuales aproximados</label>
       <select name="ingresos">
         <option value="">— Selecciona —</option>
         <option value="menos500k">Menos de RD$500,000</option>
         <option value="500k-3m">RD$500,001 – RD$3,000,000</option>
         <option value="3m-10m">RD$3,000,001 – RD$10,000,000</option>
         <option value="10m+">Más de RD$10,000,000</option>
-        <option value="ns">Prefiero no indicarlo</option>
       </select>
     </div>
     <div class="btns">
-      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
-      <button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button>
+      <button type="button" class="btn bp" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn bn" onclick="sig()">Siguiente →</button>
     </div>
   </div>
 </div>
 
 <div class="sec" id="s5">
-  <div class="sec-tit">✅ 5. Servicios de interés</div>
-  <div class="sec-body">
-    <div class="campo"><label>¿Qué servicios le interesan?</label>
+  <div class="st">✅ 5. Servicios de interés</div>
+  <div class="sb">
+    <div class="f"><label>¿Qué servicios le interesan?</label>
       <div class="opts" style="flex-direction:column">
         <label class="opt"><input type="checkbox" name="svc" value="contabilidad"> Contabilidad mensual y estados financieros</label>
         <label class="opt"><input type="checkbox" name="svc" value="itbis"> Declaración ITBIS (IT-1)</label>
@@ -238,147 +284,315 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#F4F6F9;color:#1E2535;mi
         <label class="opt"><input type="checkbox" name="svc" value="planeacion"> Planeación fiscal</label>
       </div>
     </div>
-    <div class="campo"><label>¿Alguna situación urgente?</label>
+    <div class="f"><label>¿Alguna situación urgente?</label>
       <textarea name="urgente" placeholder="Ej: carta de la DGII, meses atrasados..."></textarea>
     </div>
     <div class="btns">
-      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
-      <button type="button" class="btn btn-n" onclick="sig()">Siguiente →</button>
+      <button type="button" class="btn bp" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn bn" onclick="sig()">Siguiente →</button>
     </div>
   </div>
 </div>
 
 <div class="sec" id="s6">
-  <div class="sec-tit">💬 6. Preferencias</div>
-  <div class="sec-body">
-    <div class="campo"><label>¿Cómo prefiere comunicarse?</label>
+  <div class="st">💬 6. Preferencias</div>
+  <div class="sb">
+    <div class="f"><label>¿Cómo prefiere comunicarse?</label>
       <div class="opts">
         <label class="opt"><input type="radio" name="comunicacion" value="whatsapp"> WhatsApp</label>
         <label class="opt"><input type="radio" name="comunicacion" value="correo"> Correo</label>
         <label class="opt"><input type="radio" name="comunicacion" value="presencial"> Presencial</label>
       </div>
     </div>
-    <div class="campo"><label>¿Cómo nos conoció?</label>
+    <div class="f"><label>¿Cómo nos conoció?</label>
       <select name="referido">
         <option value="">— Selecciona —</option>
         <option>Recomendación</option><option>Redes sociales</option><option>Google</option><option>Otro</option>
       </select>
     </div>
-    <div class="campo"><label>Comentarios adicionales</label>
+    <div class="f"><label>Comentarios adicionales</label>
       <textarea name="comentarios" placeholder="Cualquier información adicional..."></textarea>
     </div>
     <div class="btns">
-      <button type="button" class="btn btn-p" onclick="ant()">← Anterior</button>
-      <button type="button" class="btn btn-e" onclick="enviar()">Enviar información ✓</button>
+      <button type="button" class="btn bp" onclick="ant()">← Anterior</button>
+      <button type="button" class="btn be" onclick="enviar()">Enviar información ✓</button>
     </div>
   </div>
 </div>
 
 </form>
 
+<!-- LOADING -->
 <div class="load" id="load">
   <div class="spin"></div>
   <div style="font-size:13px;color:#4B5563">Procesando su información...</div>
 </div>
 
+<!-- CONFIRMACIÓN CLIENTE -->
 <div class="conf" id="conf">
-  <div class="conf-ico">✅</div>
-  <div class="conf-tit">¡Información recibida!</div>
-  <div class="conf-desc">Gracias por completar el formulario. La Lcda. Raquel Andújar le contactará en las próximas <strong>24 a 48 horas</strong> con una propuesta personalizada.</div>
-  <div class="conf-tel">¿Tiene alguna pregunta urgente?<br><strong>📱 829-786-0922</strong> · WhatsApp disponible</div>
+  <div style="font-size:48px;margin-bottom:16px">✅</div>
+  <div style="font-family:Georgia,serif;font-size:20px;font-weight:700;color:#0B2545;margin-bottom:10px">¡Información recibida!</div>
+  <div style="font-size:14px;color:#4B5563;line-height:1.7;margin-bottom:20px">Gracias por completar el formulario. La Lcda. Raquel Andújar le contactará en las próximas <strong>24 a 48 horas</strong> con una propuesta personalizada.</div>
+  <div style="background:#F4F6F9;border-radius:10px;padding:14px;font-size:13px;color:#0B2545">¿Tiene alguna pregunta urgente?<br><strong>📱 829-786-0922</strong> · WhatsApp disponible</div>
+</div>
+
+<!-- MODAL CONTRASEÑA -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div style="font-size:32px;margin-bottom:12px">🔒</div>
+    <div style="font-family:Georgia,serif;font-size:16px;font-weight:700;color:#0B2545;margin-bottom:6px">Acceso interno</div>
+    <div style="font-size:12px;color:#6B7280;margin-bottom:16px">Lcda. Raquel Ma. Andújar, CPA</div>
+    <input type="password" id="pinput" placeholder="Contraseña"
+      style="width:100%;padding:10px 12px;border:2px solid #64748B;border-radius:8px;font-size:14px;margin-bottom:12px;text-align:center">
+    <button onclick="verificarPass()"
+      style="width:100%;padding:12px;background:#0B2545;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer">
+      Ver diagnóstico
+    </button>
+    <div id="perr" style="color:#991B1B;font-size:12px;margin-top:8px;display:none">Contraseña incorrecta</div>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO INTERNO -->
+<div class="diag" id="diag">
+  <div class="diag-banner">
+    <span style="font-size:16px">🔒</span>
+    <div>
+      <span style="font-size:13px;font-weight:700;color:#fff">DIAGNÓSTICO INTERNO</span>
+      <span style="font-size:11px;color:rgba(255,255,255,.8)"> — Uso exclusivo Lcda. Raquel Andújar, CPA</span>
+    </div>
+  </div>
+  <div id="diag-contenido"></div>
+  <button class="btn-pdf" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+</div>
+
 </div>
 
 <script>
-var sec = 1;
-var total = 6;
+var s=1,tot=6,PASS='raquel2026',datos={};
 
-function actualizar() {
-  for (var i = 1; i <= total; i++) {
-    document.getElementById('s' + i).className = 'sec' + (i === sec ? ' activa' : '');
-  }
-  var pct = Math.round((sec / total) * 100);
-  document.getElementById('pfill').style.width = pct + '%';
-  document.getElementById('ptxt').textContent = 'Sección ' + sec + ' de ' + total;
-  window.scrollTo(0, 0);
+function act(){
+  for(var i=1;i<=tot;i++) document.getElementById('s'+i).className='sec'+(i===s?' on':'');
+  document.getElementById('pf').style.width=Math.round(s/tot*100)+'%';
+  document.getElementById('pt').textContent='Sección '+s+' de '+tot;
+  window.scrollTo(0,0);
 }
+function sig(){if(s<tot){s++;act();}}
+function ant(){if(s>1){s--;act();}}
 
-function sig() {
-  if (sec < total) { sec++; actualizar(); }
-}
-
-function ant() {
-  if (sec > 1) { sec--; actualizar(); }
-}
-
-document.addEventListener('change', function(e) {
-  if (e.target.type === 'radio') {
-    var grupo = document.querySelectorAll('input[name="' + e.target.name + '"]');
-    for (var i = 0; i < grupo.length; i++) {
-      grupo[i].closest('.opt').className = 'opt';
-    }
-    e.target.closest('.opt').className = 'opt sel';
+document.addEventListener('change',function(e){
+  if(e.target.type==='radio'){
+    document.querySelectorAll('input[name="'+e.target.name+'"]').forEach(function(r){r.closest('.opt').className='opt';});
+    e.target.closest('.opt').className='opt sel';
   }
-  if (e.target.type === 'checkbox') {
-    e.target.closest('.opt').className = e.target.checked ? 'opt sel' : 'opt';
-  }
+  if(e.target.type==='checkbox') e.target.closest('.opt').className=e.target.checked?'opt sel':'opt';
 });
 
-function getDatos() {
-  var fd = new FormData(document.getElementById('frm'));
-  var d = {};
-  fd.forEach(function(v, k) {
-    if (d[k]) {
-      d[k] = Array.isArray(d[k]) ? d[k].concat(v) : [d[k], v];
-    } else {
-      d[k] = v;
-    }
+function getDatos(){
+  var fd=new FormData(document.getElementById('frm')),d={};
+  fd.forEach(function(v,k){
+    if(d[k]){d[k]=Array.isArray(d[k])?d[k].concat(v):[d[k],v];}
+    else{d[k]=v;}
   });
   return d;
 }
 
-function enviar() {
-  document.getElementById('frm').style.display = 'none';
-  document.getElementById('prog-wrap').style.display = 'none';
-  document.getElementById('load').className = 'load vis';
+function enviar(){
+  document.getElementById('frm').style.display='none';
+  document.getElementById('pw').style.display='none';
+  document.getElementById('load').className='load on';
+  datos=getDatos();
 
-  var d = getDatos();
-
-  fetch('https://formspree.io/f/xnjrkaby', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      empresa: d.empresa || 'N/D',
-      rnc: d.rnc || 'N/D',
-      contacto: d.contacto || 'N/D',
-      telefono: d.telefono || 'N/D',
-      correo: d.correo || 'N/D',
-      entidad: d.entidad || 'N/D',
-      sector: d.sector || 'N/D',
-      rnc_activo: d.rnc_activo || 'N/D',
-      dgii: d.dgii || 'N/D',
-      itbis: d.itbis || 'N/D',
-      comprobantes: d.comprobantes || 'N/D',
-      req_dgii: d.req_dgii || 'N/D',
-      empleados: d.empleados || 'N/D',
-      tss: d.tss || 'N/D',
-      nomina: d.nomina || 'N/D',
-      contabilidad: d.contabilidad || 'N/D',
-      software: d.software || 'N/D',
-      estados: d.estados || 'N/D',
-      ingresos: d.ingresos || 'N/D',
-      servicios: Array.isArray(d.svc) ? d.svc.join(', ') : (d.svc || 'N/D'),
-      urgente: d.urgente || 'Ninguno',
-      comunicacion: d.comunicacion || 'N/D',
-      referido: d.referido || 'N/D',
-      comentarios: d.comentarios || 'N/D'
-    })
-  }).then(function() {
-    document.getElementById('load').className = 'load';
-    document.getElementById('conf').className = 'conf vis';
-  }).catch(function() {
-    document.getElementById('load').className = 'load';
-    document.getElementById('conf').className = 'conf vis';
+  fetch('https://formspree.io/f/xnjrkaby',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(datos)
+  }).finally(function(){
+    document.getElementById('load').className='load';
+    document.getElementById('conf').className='conf on';
+    setTimeout(function(){
+      document.getElementById('modal').className='modal on';
+    },1500);
   });
+}
+
+function verificarPass(){
+  var p=document.getElementById('pinput').value;
+  if(p===PASS){
+    document.getElementById('modal').className='modal';
+    document.getElementById('conf').className='conf';
+    generarDiagnostico(datos);
+    document.getElementById('diag').className='diag on';
+    window.scrollTo(0,0);
+  } else {
+    document.getElementById('perr').style.display='block';
+  }
+}
+
+document.getElementById('pinput').addEventListener('keydown',function(e){if(e.key==='Enter')verificarPass();});
+
+function generarDiagnostico(d){
+  var meses=parseInt(d.meses)||0;
+  var totalReg=meses*3500;
+
+  // RIESGO
+  var pts=0;
+  if(d.dgii!=='si') pts+=2;
+  if(d.tss==='no') pts+=2;
+  if(d.req_dgii==='si') pts+=2;
+  if(d.comprobantes==='ncf'||d.comprobantes==='no'||d.comprobantes==='implementar') pts+=1;
+  if(d.contabilidad==='no') pts+=1;
+  if(d.estados==='no') pts+=1;
+  if(meses>6) pts+=2;
+
+  var r=pts>=5?{c:'alto',bg:'#FEE2E2',br:'#FCA5A5',cl:'#991B1B',ico:'🔴',n:'ALTO',desc:'Múltiples incumplimientos identificados. Requiere regularización urgente ante la DGII y TSS.'}:
+         pts>=2?{c:'medio',bg:'#FEF9C3',br:'#FDE047',cl:'#854D0E',ico:'🟡',n:'MEDIO',desc:'Algunas áreas requieren atención inmediata. Se recomienda iniciar organización pronto.'}:
+                {c:'bajo',bg:'#DCFCE7',br:'#86EFAC',cl:'#166534',ico:'🟢',n:'BAJO',desc:'Base sólida. Enfoque en mantenimiento y optimización.'};
+
+  // PAQUETE
+  var pkg,pkgDesc;
+  if(d.ingresos==='10m+'||d.sector==='Call Center / BPO'||d.empleados==='16+'){
+    pkg='Dirección Financiera Externa';
+    pkgDesc='Por el volumen de operaciones, cantidad de empleados y complejidad del sector, este cliente requiere una gestión financiera de alto nivel con planeación fiscal y representación ante la DGII.';
+  } else if(d.empleados==='0'||d.empleados===''){
+    pkg='Cumplimiento y Control';
+    pkgDesc='Sin empleados formales, la prioridad es el cumplimiento tributario ante la DGII — ITBIS, ISR, 606/607 y comprobantes fiscales correctos.';
+  } else {
+    pkg='Crecimiento Seguro';
+    pkgDesc='Con empleados activos y operaciones regulares, este cliente necesita nómina, TSS, contabilidad mensual y estados financieros además del cumplimiento DGII.';
+  }
+
+  // SISTEMA
+  var sist=d.ingresos==='10m+'?'SAP':d.sector==='Call Center / BPO'?'Softland':d.ingresos==='menos500k'?'Alegra':'QuickBooks Online';
+  var sistAlt=sist==='Alegra'?'Cashflow':sist==='QuickBooks Online'?'Alegra':'QuickBooks Online';
+
+  // PRECIO según trabajo estimado
+  var precioIguala=8500;
+  if(d.ingresos==='10m+'||d.sector==='Call Center / BPO'||d.empleados==='16+') precioIguala=15000;
+  else if(d.empleados==='6-15'||d.ingresos==='3m-10m') precioIguala=12000;
+  else if(d.empleados==='1-5'||d.ingresos==='500k-3m') precioIguala=8500;
+
+  var html='';
+
+  // RIESGO
+  html+='<div style="display:flex;align-items:center;gap:14px;background:'+r.bg+';border:1.5px solid '+r.br+';border-radius:10px;padding:14px 18px;margin-bottom:16px">';
+  html+='<span style="font-size:28px">'+r.ico+'</span>';
+  html+='<div><div style="font-size:14px;font-weight:700;color:'+r.cl+'">NIVEL DE RIESGO: '+r.n+'</div>';
+  html+='<div style="font-size:12px;color:'+r.cl+';margin-top:3px">'+r.desc+'</div></div></div>';
+
+  // DATOS CLIENTE
+  html+='<div class="dsec"><div class="dsec-h">👤 DATOS DEL CLIENTE</div><div class="dsec-b">';
+  html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">';
+  var campos=[['Empresa',d.empresa],['RNC',d.rnc],['Contacto',d.contacto],['Teléfono',d.telefono],['Sector',d.sector],['Entidad',d.entidad]];
+  campos.forEach(function(c){
+    html+='<div><span style="font-weight:700;color:#0B2545">'+c[0]+':</span> <span style="color:#374151">'+( c[1]||'N/D')+'</span></div>';
+  });
+  html+='</div></div></div>';
+
+  // DIAGNÓSTICO
+  html+='<div class="dsec"><div class="dsec-h">🔍 DIAGNÓSTICO POR ÁREA</div><div class="dsec-b">';
+  html+='<table class="dtable"><tr><th>Área</th><th>Situación</th><th>Estado</th><th>Acción requerida</th></tr>';
+  var areas=[
+    ['DGII',d.dgii==='si'?'Al corriente':d.dgii==='adeudos'?'Con adeudos':'No verificado',d.dgii==='si'?'v':'r',d.dgii==='si'?'Mantener':'Verificar y regularizar'],
+    ['ITBIS',d.itbis==='si'?'Declara mensualmente':d.itbis==='no'?'No declara':'No sabe',d.itbis==='si'?'v':'r',d.itbis==='si'?'Mantener':'Regularizar declaraciones'],
+    ['Comprobantes',d.comprobantes==='ecf'?'e-CF electrónico':d.comprobantes==='ncf'?'NCF físico':'Sin comprobantes',d.comprobantes==='ecf'?'v':'r',d.comprobantes==='ecf'?'Mantener':'Migrar a e-CF'],
+    ['TSS',d.tss==='si'?'Al día':d.tss==='no'?'Sin registrar':'Parcial',d.tss==='si'?'v':d.tss==='parcial'?'a':'r',d.tss==='si'?'Mantener':'Registrar empleados'],
+    ['Contabilidad',d.contabilidad==='no'?'Sin contabilidad formal':d.contabilidad==='externo'?'Contador externo':'Interna',d.contabilidad==='no'?'a':'v',d.contabilidad==='no'?'Implementar sistema':'Revisar y continuar'],
+    ['Meses atrasados',meses>0?meses+' mes(es)':'Al día',meses>6?'r':meses>0?'a':'v',meses>0?'Regularizar RD$3,500/mes':'OK'],
+  ];
+  areas.forEach(function(a,i){
+    html+='<tr'+(i%2===1?' style="background:#FAFBFC"':'')+'>';
+    html+='<td><strong>'+a[0]+'</strong></td><td>'+a[1]+'</td>';
+    html+='<td><span class="tag tag-'+a[2]+'">'+(a[2]==='v'?'✅ OK':a[2]==='a'?'⚡ Pendiente':'⚠️ Urgente')+'</span></td>';
+    html+='<td>'+a[3]+'</td></tr>';
+  });
+  html+='</table></div></div>';
+
+  // QUÉ HAY QUE HACERSE
+  html+='<div class="dsec"><div class="dsec-h">⚡ QUÉ HAY QUE HACERSE PRIMERO</div><div class="dsec-b">';
+  var acciones=[];
+  if(d.req_dgii==='si') acciones.push({u:true,i:'🔴',t:'Atender requerimiento DGII URGENTE',d:'El cliente tiene carta(s) activas. Atender antes de cualquier otra gestión.'});
+  if(d.dgii!=='si') acciones.push({u:true,i:'🔴',t:'Verificar estatus DGII',d:'Revisar deudas, meses sin declarar y adeudos en Oficina Virtual.'});
+  if(d.tss==='no') acciones.push({u:true,i:'🔴',t:'Registrar empleados en TSS',d:'Riesgo laboral activo. Regularizar de inmediato.'});
+  if(d.comprobantes==='ncf') acciones.push({u:true,i:'🔴',t:'Migrar NCF a e-CF electrónico',d:'Los NCF físicos ya no son válidos según normativa DGII vigente.'});
+  if(meses>0) acciones.push({u:true,i:'⚠️',t:'Regularizar '+meses+' mes(es) atrasado(s)',d:'Declarar ITBIS, ISR y reportes 606/607 pendientes. Costo: RD$'+totalReg.toLocaleString()+'.'});
+  if(d.contabilidad==='no') acciones.push({u:false,i:'📊',t:'Implementar contabilidad formal',d:'Organizar registros contables e implementar sistema '+sist+'.'});
+  if(d.estados==='no') acciones.push({u:false,i:'📁',t:'Preparar estados financieros',d:'Elaborar balance general y estado de resultados del período disponible.'});
+  acciones.push({u:false,i:'📄',t:'Firmar contrato de servicios',d:'Formalizar la relación profesional antes de iniciar trabajos.'});
+  acciones.push({u:false,i:'🏦',t:'Solicitar documentos al cliente',d:'Estados de cuenta bancarios, facturas disponibles y acceso a Oficina Virtual DGII.'});
+
+  acciones.forEach(function(a){
+    html+='<div class="hi '+(a.u?'urg':'nor')+'">';
+    html+='<span style="font-size:18px;flex-shrink:0">'+a.i+'</span>';
+    html+='<div><div style="font-size:12px;font-weight:700;color:#0B2545;margin-bottom:2px">'+a.t+'</div>';
+    html+='<div style="font-size:11px;color:#4B5563">'+a.d+'</div></div></div>';
+  });
+  html+='</div></div>';
+
+  // PAQUETE
+  html+='<div class="dsec"><div class="dsec-h">📦 PAQUETE RECOMENDADO</div><div class="dsec-b">';
+  html+='<div class="pkg-box">';
+  html+='<div style="font-family:Georgia,serif;font-size:18px;font-weight:700;color:#0B2545">'+pkg+'</div>';
+  html+='<div style="font-size:24px;font-weight:700;color:#C9973F;margin:6px 0">RD$ '+precioIguala.toLocaleString()+'/mes</div>';
+  html+='<div style="font-size:12px;color:#4B5563;line-height:1.6;margin-bottom:10px">'+pkgDesc+'</div>';
+  html+='<div style="font-size:11px;color:#0B2545"><strong>Sistema recomendado:</strong> <span style="color:#C9973F">'+sist+'</span> · Alternativa: '+sistAlt+'</div>';
+  html+='</div></div></div>';
+
+  // FASES
+  html+='<div class="dsec"><div class="dsec-h">📋 PLAN DE TRABAJO EN FASES</div><div class="dsec-b">';
+  var fases=[
+    {t:'Diagnóstico y verificación',ti:'Semana 1',items:['Verificar RNC y deudas en Oficina Virtual DGII','Revisar estados de cuenta bancarios disponibles','Identificar meses sin declarar','Determinar empleados para registrar en TSS']},
+    {t:'Regularización DGII y TSS',ti:'Mes 1 – 2',items:['Declarar meses atrasados de ITBIS (IT-1)','Preparar y enviar reportes 606 y 607','Registrar empleados en TSS','Migrar comprobantes a e-CF electrónico']},
+    {t:'Organización contable',ti:'Mes 2 – 3',items:['Implementar sistema '+sist,'Separar finanzas personales del negocio','Implementar cuadres diarios (efectivo + tarjeta)','Formalizar documentación de gastos deducibles']},
+    {t:'Mantenimiento mensual',ti:'Mes 3 en adelante',items:['Declaración ITBIS y pagos a cuenta ISR','Nómina y pago TSS mensual','Conciliación bancaria mensual','Estados financieros mensuales']}
+  ];
+  fases.forEach(function(f,i){
+    html+='<div class="fase"><div class="fase-h"><div class="fase-n">'+(i+1)+'</div><div class="fase-t">'+f.t+'</div><div class="fase-ti">'+f.ti+'</div></div>';
+    html+='<div class="fase-b">';
+    f.items.forEach(function(it){html+='<div class="fi">'+it+'</div>';});
+    html+='</div></div>';
+  });
+  html+='</div></div>';
+
+  // PROPUESTA
+  html+='<div class="dsec"><div class="dsec-h">💰 PROPUESTA ECONÓMICA</div><div class="dsec-b">';
+  html+='<div class="prop-g">';
+  html+='<div class="pi n"><div class="pi-l">Diagnóstico inicial</div><div class="pi-m">GRATIS</div><div class="pi-d">Sin costo · Sin compromiso</div></div>';
+  html+='<div class="pi n"><div class="pi-l">Regularización por mes</div><div class="pi-m">RD$ 3,500</div><div class="pi-d">×'+meses+' mes(es) = RD$'+totalReg.toLocaleString()+'</div></div>';
+  html+='<div class="pi d"><div class="pi-l">Iguala mensual fija</div><div class="pi-m">RD$ '+precioIguala.toLocaleString()+'</div><div class="pi-d">Todos los servicios incluidos</div></div>';
+  html+='<div class="pi n"><div class="pi-l">Opción cuotas regularización</div><div class="pi-m" style="font-size:14px">2–3 cuotas</div><div class="pi-d">RD$'+(meses>0?Math.round(totalReg/2).toLocaleString()+' c/u (2 cuotas)':'N/A')+'</div></div>';
+  html+='</div>';
+  if(meses>0||precioIguala>8500){
+    html+='<div class="precio-total">';
+    html+='<div style="font-size:11px;color:rgba(176,200,232,.7);margin-bottom:6px">RESUMEN ECONÓMICO PRIMER MES</div>';
+    html+='<div style="font-size:22px;font-weight:700;color:#C9973F">RD$ '+(totalReg+precioIguala).toLocaleString()+'</div>';
+    html+='<div style="font-size:11px;color:rgba(176,200,232,.6);margin-top:4px">Regularización + primera iguala mensual</div>';
+    html+='</div>';
+  }
+  html+='</div></div>';
+
+  // CONTRATO
+  html+='<div class="dsec"><div class="dsec-h">📄 CONTRATO DE SERVICIOS</div><div class="dsec-b"><div class="contrato">';
+  var hoy=new Date();
+  html+='<p style="text-align:center;font-weight:700;font-size:14px;margin-bottom:14px">CONTRATO DE PRESTACIÓN DE SERVICIOS CONTABLES Y TRIBUTARIOS</p>';
+  html+='<p style="margin-bottom:10px">En la ciudad de Santiago de los Caballeros, República Dominicana, el día '+hoy.getDate()+' del mes de '+['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][hoy.getMonth()]+' del año '+hoy.getFullYear()+', comparecen:</p>';
+  html+='<p style="margin-bottom:10px"><strong>LA PRESTADORA:</strong> La Lcda. Raquel Ma. Andújar, Contadora Pública Autorizada, miembro del ICPARD.</p>';
+  html+='<p style="margin-bottom:10px"><strong>EL CLIENTE:</strong> '+(d.empresa||'_________________')+', RNC: '+(d.rnc||'_________________')+', representado por '+(d.contacto||'_________________')+'.</p>';
+  html+='<p style="margin-bottom:8px;font-weight:700;color:#0B2545">CLÁUSULA PRIMERA — OBJETO</p>';
+  html+='<p style="margin-bottom:10px">La Prestadora se compromete a brindar los servicios del paquete <strong>'+pkg+'</strong> a cambio de una iguala mensual fija de <strong>RD$ '+precioIguala.toLocaleString()+'.00</strong>.</p>';
+  html+='<p style="margin-bottom:8px;font-weight:700;color:#0B2545">CLÁUSULA SEGUNDA — HONORARIOS</p>';
+  html+='<p style="margin-bottom:10px">Iguala mensual: <strong>RD$ '+precioIguala.toLocaleString()+'.00</strong> pagadera los primeros 5 días de cada mes.'+(meses>0?' Regularización de '+meses+' mes(es): <strong>RD$ '+totalReg.toLocaleString()+'.00</strong>, pagadera en 2 o 3 cuotas según acuerdo.':'')+'</p>';
+  html+='<p style="margin-bottom:8px;font-weight:700;color:#0B2545">CLÁUSULA TERCERA — OBLIGACIONES DEL CLIENTE</p>';
+  html+='<p style="margin-bottom:10px">Suministrar documentación en tiempo oportuno, mantener pagos al día y notificar cambios en las operaciones del negocio.</p>';
+  html+='<p style="margin-bottom:8px;font-weight:700;color:#0B2545">CLÁUSULA CUARTA — CONFIDENCIALIDAD</p>';
+  html+='<p style="margin-bottom:10px">La Prestadora mantendrá estricta confidencialidad sobre toda la información financiera del Cliente, conforme al Código de Ética del ICPARD.</p>';
+  html+='<p style="margin-bottom:8px;font-weight:700;color:#0B2545">CLÁUSULA QUINTA — VIGENCIA</p>';
+  html+='<p style="margin-bottom:20px">Vigencia de un (1) año renovable automáticamente. Rescindible con 30 días de aviso previo.</p>';
+  html+='<div class="firma-g">';
+  html+='<div style="text-align:center"><div class="firma-l"></div><div style="font-size:11px;font-weight:700;color:#0B2545">'+(d.contacto||'El Cliente')+'</div><div style="font-size:10px;color:#6B7280">'+(d.empresa||'')+'</div><div style="font-size:10px;color:#6B7280;margin-top:4px">Fecha: _______________</div></div>';
+  html+='<div style="text-align:center"><div class="firma-l"></div><div style="font-size:11px;font-weight:700;color:#0B2545">Lcda. Raquel Ma. Andújar, CPA</div><div style="font-size:10px;color:#6B7280">Contadora Pública Autorizada · ICPARD</div><div style="font-size:10px;color:#6B7280;margin-top:4px">Fecha: _______________</div></div>';
+  html+='</div></div></div></div>';
+
+  document.getElementById('diag-contenido').innerHTML=html;
 }
 </script>
 </body>
